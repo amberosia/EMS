@@ -53,10 +53,10 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="fteText" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="totalText" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="refreshButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -66,7 +66,7 @@
                           <Component id="jScrollPane3" alignment="1" max="32767" attributes="0"/>
                           <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="pteText" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
@@ -84,18 +84,18 @@
                           <Component id="editButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="refreshButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="totalText" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="3" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                  <Component id="fteText" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="86" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="206" max="32767" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  <Component id="pteText" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane3" pref="86" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" pref="206" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -142,14 +142,14 @@
             <Component class="javax.swing.JTable" name="fteTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="10" rowCount="4">
+                  <Table columnCount="10" rowCount="0">
                     <Column editable="false" title="Add Date" type="java.lang.Object"/>
-                    <Column editable="true" title="Image" type="java.lang.Object"/>
+                    <Column editable="false" title="Image" type="java.lang.Object"/>
                     <Column editable="false" title="Employee Number" type="java.lang.Object"/>
                     <Column editable="false" title="First Name" type="java.lang.Object"/>
                     <Column editable="false" title="Last Name" type="java.lang.Object"/>
                     <Column editable="false" title="Gender" type="java.lang.Object"/>
-                    <Column editable="false" title="Salary" type="java.lang.Object"/>
+                    <Column editable="false" title="Yearly Salary" type="java.lang.Object"/>
                     <Column editable="false" title="Deduction Rate" type="java.lang.Object"/>
                     <Column editable="false" title="Net Income" type="java.lang.Object"/>
                     <Column editable="false" title="Location" type="java.lang.Object"/>
@@ -226,7 +226,7 @@
             <Component class="javax.swing.JTable" name="pteTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="12" rowCount="4">
+                  <Table columnCount="12" rowCount="0">
                     <Column editable="false" title="Add Date" type="java.lang.Object"/>
                     <Column editable="false" title="Image" type="java.lang.Object"/>
                     <Column editable="false" title="Employee Number" type="java.lang.Object"/>
@@ -237,7 +237,7 @@
                     <Column editable="false" title="Hours/Week" type="java.lang.Object"/>
                     <Column editable="false" title="Weeks/Year" type="java.lang.Object"/>
                     <Column editable="false" title="Deduction Rate" type="java.lang.Object"/>
-                    <Column editable="true" title="Net Income" type="java.lang.Object"/>
+                    <Column editable="false" title="Net Income" type="java.lang.Object"/>
                     <Column editable="false" title="Location" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -320,19 +320,19 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="refreshButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="totalText">
           <Properties>
             <Property name="text" type="java.lang.String" value="Total Employees: "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="fteText">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Total Full Time Employees:"/>
+            <Property name="text" type="java.lang.String" value="Full Time Employees"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="pteText">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Total Part Time Employees:"/>
+            <Property name="text" type="java.lang.String" value="Part Time Employees"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">

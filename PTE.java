@@ -8,15 +8,19 @@
  * @author jenna
  */
 public class PTE extends EmployeeInfo {
-    private double hourlyWage;
-    private double hoursPerWeek;
-    private int weeksPerYear;
+    public double hourlyWage;
+    public double hoursPerWeek;
+    public int weeksPerYear;
     
-    public PTE(int eN, String fN, String lN, String g, int loc, double deduc, double hourly, double hPW, int wPY) {
-        super(eN, fN, lN, g, loc, deduc);
+    public PTE(String date, int eN, String fN, String lN, String g, String loc, double deduc, double hourly, double hPW, int wPY) {
+        super(date, eN, fN, lN, g, loc, deduc);
         this.hourlyWage = hourly;
         this.hoursPerWeek = hPW;
         this.weeksPerYear = wPY;
+    }
+    
+    public double calcNetIncome() {
+        return ((hourlyWage*hoursPerWeek*weeksPerYear)*(1.0 - deductRate));
     }
             
 }

@@ -9,17 +9,18 @@
  */
 
 public class EmployeeInfo {
-	
+	public String date;
 	public int empNumber;
 	public String firstName;
 	public String lastName;
         public String gender;
-	public int workLoc;
+	public String workLoc;
 	public double deductRate;
 	
 	
-	public EmployeeInfo(int eN, String fN, String lN, String g, int loc, double deduc) {
-		this.empNumber = eN;
+	public EmployeeInfo(String date, int eN, String fN, String lN, String g, String loc, double deduc) {
+		this.date = date;
+                this.empNumber = eN;
 		this.firstName = fN;
 		this.lastName = lN;
                 this.gender = g;

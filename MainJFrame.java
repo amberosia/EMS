@@ -10,6 +10,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jenna
  */
+import java.util.*;
+
 public class MainJFrame extends javax.swing.JFrame {
     
     public MyHashTable theHT;
@@ -42,9 +44,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         pteTable = new javax.swing.JTable();
         refreshButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        totalText = new javax.swing.JLabel();
+        fteText = new javax.swing.JLabel();
+        pteText = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,17 +76,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
         fteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
-                "Add Date", "Image", "Employee Number", "First Name", "Last Name", "Gender", "Salary", "Deduction Rate", "Net Income", "Location"
+                "Add Date", "Image", "Employee Number", "First Name", "Last Name", "Gender", "Yearly Salary", "Deduction Rate", "Net Income", "Location"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -95,17 +94,14 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Add Date", "Image", "Employee Number", "First Name", "Last Name", "Gender", "Hourly Wage", "Hours/Week", "Weeks/Year", "Deduction Rate", "Net Income", "Location"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, true, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,11 +117,11 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Total Employees: ");
+        totalText.setText("Total Employees: ");
 
-        jLabel2.setText("Total Full Time Employees:");
+        fteText.setText("Full Time Employees");
 
-        jLabel3.setText("Total Part Time Employees:");
+        pteText.setText("Part Time Employees");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -139,10 +135,10 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(fteText)
                     .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(backgroundLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                            .addComponent(totalText)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(refreshButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,7 +146,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
                         .addComponent(jScrollPane3)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(jLabel3))
+                    .addComponent(pteText))
                 .addGap(18, 18, 18))
         );
         backgroundLayout.setVerticalGroup(
@@ -164,17 +160,17 @@ public class MainJFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(editButton)
                         .addComponent(refreshButton))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(totalText, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(fteText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(pteText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                 .addGap(17, 17, 17))
         );
 
@@ -192,8 +188,27 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void displayToMain() {
-        
+    private void updateTable() {
+        totalText.setText("Total Employees: " + theHT.getNumInHashTable());
+        DefaultTableModel fteModel = (DefaultTableModel) fteTable.getModel();
+        fteTable.setModel(fteModel);
+        fteModel.setRowCount(0);
+        DefaultTableModel pteModel = (DefaultTableModel) pteTable.getModel();
+        pteTable.setModel(pteModel);
+        pteModel.setRowCount(0);
+        for (int i = 0; i < 10; i++) {            
+            for (int j = 0; j < theHT.buckets[i].size(); j++) {
+                ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
+                EmployeeInfo empToDisplay = theBucket.get(j);
+                if (empToDisplay instanceof FTE fte) {
+                    Object[] row = { fte.date, 0, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), fte.workLoc};
+                    fteModel.addRow(row);
+                } else if (empToDisplay instanceof PTE pte) {
+                    Object[] row = { pte.date, 0, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), pte.workLoc};
+                    pteModel.addRow(row);
+                }
+            }
+        }
     }
     
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
@@ -203,10 +218,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
-        DefaultTableModel model = (DefaultTableModel) fteTable.getModel();
-        fteTable.setModel(model);
-        Object[] row = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        model.addRow(row);
+        updateTable();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     /**
@@ -249,15 +261,15 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton editButton;
     private javax.swing.JTable fteTable;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel fteText;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable pteTable;
+    private javax.swing.JLabel pteText;
     private javax.swing.JButton refreshButton;
+    private javax.swing.JLabel totalText;
     // End of variables declaration//GEN-END:variables
 }

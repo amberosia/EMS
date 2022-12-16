@@ -13,7 +13,7 @@ import java.util.*;
 public class MyHashTable {
 
 	public ArrayList<EmployeeInfo>[] buckets;
-        public int numInHashTable;
+        private int numInHashTable;
 
 	
 	// CONSTRUCTOR
@@ -56,23 +56,16 @@ public class MyHashTable {
         }
 
 
-	public boolean removeEmployee(int empNum) {
+	public void removeEmployee(int empNum) {
 		int bucketNum = calcBucket(empNum);
 
-		if (buckets[bucketNum].isEmpty()) {
-			return false;
-			
-		} else {
-			for (int i = 0; i < buckets[bucketNum].size(); i++) {
-				if (buckets[bucketNum].get(i).empNumber == empNum) {
-					buckets[bucketNum].remove(i);
-					return true;
-					
-				}
+                for (int i = 0; i < buckets[bucketNum].size(); i++) {
+			if (buckets[bucketNum].get(i).empNumber == empNum) {
+                                buckets[bucketNum].remove(i);
+                                numInHashTable--;
 			}
-		}
-		
-		return false;
+			
+                }
 	}
 
 	
@@ -106,7 +99,7 @@ public class MyHashTable {
 				System.out.println("Bucket " + i + " contains the following:");
 				for (int j = 0; j < buckets[i].size(); j++) {
 					System.out.println("    " + buckets[i].get(j).empNumber + " "
-							+ buckets[i].get(j).firstName + " " + buckets[i].get(j).lastName
+							+ buckets[i].get(j).date + " " + buckets[i].get(j).firstName
 							+ " at position " + j);
 				}
 			}
