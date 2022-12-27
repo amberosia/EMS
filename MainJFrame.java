@@ -188,7 +188,7 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void updateTable() {
+    public void updateTable() {
         totalText.setText("Total Employees: " + theHT.getNumInHashTable());
         DefaultTableModel fteModel = (DefaultTableModel) fteTable.getModel();
         fteTable.setModel(fteModel);

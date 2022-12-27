@@ -56,16 +56,25 @@ public class MyHashTable {
         }
 
 
-	public void removeEmployee(int empNum) {
+	public EmployeeInfo removeEmployee(int empNum) {
 		int bucketNum = calcBucket(empNum);
 
-                for (int i = 0; i < buckets[bucketNum].size(); i++) {
-			if (buckets[bucketNum].get(i).empNumber == empNum) {
-                                buckets[bucketNum].remove(i);
-                                numInHashTable--;
-			}
+		if (buckets[bucketNum].isEmpty()) {
+			return null;
 			
-                }
+		} else {
+			for (int i = 0; i < buckets[bucketNum].size(); i++) {
+				if (buckets[bucketNum].get(i).empNumber == empNum) {
+					EmployeeInfo removedEmployee = buckets[bucketNum].get(i);
+					buckets[bucketNum].remove(i);
+                                        numInHashTable--;
+					return removedEmployee;
+					
+				}
+			}
+		}
+		
+		return null;
 	}
 
 	
