@@ -14,11 +14,11 @@ public class EmployeeInfo {
 	public String firstName;
 	public String lastName;
         public String gender;
-	public String workLoc;
+	public int workLoc;
 	public double deductRate;
 	
 	
-	public EmployeeInfo(String date, int eN, String fN, String lN, String g, String loc, double deduc) {
+	public EmployeeInfo(String date, int eN, String fN, String lN, String g, int loc, double deduc) {
 		this.date = date;
                 this.empNumber = eN;
 		this.firstName = fN;

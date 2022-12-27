@@ -15,6 +15,7 @@ import java.util.*;
 public class MainJFrame extends javax.swing.JFrame {
     
     public MyHashTable theHT;
+    public ArrayList<String> locArray;
 
     /**
      * Creates new form MainJFrame
@@ -22,7 +23,9 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         theHT = new MyHashTable(10);
-        
+        locArray = new ArrayList<>();
+        locArray.add("Mississauga");
+        locArray.add("Toronto");
         setExtendedState(MainJFrame.MAXIMIZED_BOTH); 
     }
 
@@ -36,8 +39,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jPanel2 = new javax.swing.JPanel();
         editButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         fteTable = new javax.swing.JTable();
@@ -48,24 +49,14 @@ public class MainJFrame extends javax.swing.JFrame {
         fteText = new javax.swing.JLabel();
         pteText = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        locButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         background.setName(""); // NOI18N
         background.setPreferredSize(new java.awt.Dimension(640, 360));
-
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 28, Short.MAX_VALUE)
-        );
 
         editButton.setText("EDIT EMPLOYEES");
         editButton.addActionListener(new java.awt.event.ActionListener() {
@@ -123,62 +114,84 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pteText.setText("Part Time Employees");
 
+        jButton1.setText("SAVE");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("EMPLOYEE MANAGEMENT SYSTEM");
+
+        locButton.setText("EDIT LOCATIONS");
+        locButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fteText)
-                    .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(backgroundLayout.createSequentialGroup()
-                            .addComponent(totalText)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(refreshButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(editButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(pteText))
-                .addGap(18, 18, 18))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator2)
+                            .addGroup(backgroundLayout.createSequentialGroup()
+                                .addComponent(totalText)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(refreshButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(locButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(editButton))
+                            .addGroup(backgroundLayout.createSequentialGroup()
+                                .addComponent(fteText)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(backgroundLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1)))
+                        .addGap(21, 21, 21))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(pteText)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(editButton)
-                        .addComponent(refreshButton))
-                    .addComponent(totalText, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(19, 19, 19)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(editButton)
+                            .addComponent(refreshButton)
+                            .addComponent(locButton)))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalText, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fteText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pteText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                .addGap(17, 17, 17))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,10 +214,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
                 EmployeeInfo empToDisplay = theBucket.get(j);
                 if (empToDisplay instanceof FTE fte) {
-                    Object[] row = { fte.date, 0, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), fte.workLoc};
+                    Object[] row = { fte.date, 0, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), locArray.get(fte.workLoc)};
                     fteModel.addRow(row);
                 } else if (empToDisplay instanceof PTE pte) {
-                    Object[] row = { pte.date, 0, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), pte.workLoc};
+                    Object[] row = { pte.date, 0, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), locArray.get(pte.workLoc)};
                     pteModel.addRow(row);
                 }
             }
@@ -215,11 +228,18 @@ public class MainJFrame extends javax.swing.JFrame {
         EditJFrame editFrame = new EditJFrame();
         editFrame.setVisible(true);
         editFrame.setHT(theHT);
+        editFrame.setEditLocArray(locArray);
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         updateTable();
     }//GEN-LAST:event_refreshButtonActionPerformed
+    
+    private void locButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locButtonActionPerformed
+        LocationJFrame locationFrame = new LocationJFrame();
+        locationFrame.setVisible(true);
+        locationFrame.setLocArray(locArray);
+    }//GEN-LAST:event_locButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -262,11 +282,12 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JButton editButton;
     private javax.swing.JTable fteTable;
     private javax.swing.JLabel fteText;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JButton locButton;
     private javax.swing.JTable pteTable;
     private javax.swing.JLabel pteText;
     private javax.swing.JButton refreshButton;
