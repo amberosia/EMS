@@ -3,6 +3,10 @@ import java.awt.Color;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;
 import java.util.ArrayList; 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.ImageIcon;
+import java.awt.Image;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -14,9 +18,12 @@ import java.util.ArrayList;
  * @author jenna
  */
 public class EditJFrame extends javax.swing.JFrame {
-
+    private MainJFrame mainFrame;
     private MyHashTable theHT;
     private ArrayList<String> locArray;
+    final ImageIcon defaultPfp;
+    private ImageIcon pfp;
+    private ImageIcon pfpEdit;
 
     /**
      * Creates new form EditJFrame
@@ -31,9 +38,17 @@ public class EditJFrame extends javax.swing.JFrame {
         removeButton.setEnabled(false);
         msgEdit.setVisible(false);
         editButton.setEnabled(false);
-
+    
+        defaultPfp = new ImageIcon(getClass().getResource("defaultPfp.png"), getClass().getResource("defaultPfp.png").toString());
+        pfp = defaultPfp;
+        pfpLabel.setIcon(pfp);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         pack();
+    }
+    
+        public void passMainFrame(MainJFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
     
     public void setHT(MyHashTable theRefVal) {
@@ -63,7 +78,6 @@ public class EditJFrame extends javax.swing.JFrame {
 
         addButtonGroup = new javax.swing.ButtonGroup();
         editButtonGroup = new javax.swing.ButtonGroup();
-        jFileChooser1 = new javax.swing.JFileChooser();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         addTab = new javax.swing.JPanel();
         empNumField = new javax.swing.JTextField();
@@ -74,7 +88,7 @@ public class EditJFrame extends javax.swing.JFrame {
         fteButton = new javax.swing.JRadioButton();
         pteButton = new javax.swing.JRadioButton();
         deducField = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        pfpLabel = new javax.swing.JLabel();
         uploadButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         fNText = new javax.swing.JLabel();
@@ -99,7 +113,6 @@ public class EditJFrame extends javax.swing.JFrame {
         msg = new javax.swing.JLabel();
         editTab = new javax.swing.JPanel();
         jInternalFrame2 = new javax.swing.JInternalFrame();
-        jPanel3 = new javax.swing.JPanel();
         fNEditField = new javax.swing.JTextField();
         lNEditField = new javax.swing.JTextField();
         gEditField = new javax.swing.JTextField();
@@ -125,8 +138,10 @@ public class EditJFrame extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         msgEdit = new javax.swing.JLabel();
         editButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        uploadEditButton = new javax.swing.JButton();
         locEditField = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
+        pfpEditLabel = new javax.swing.JLabel();
         searchEditButton = new javax.swing.JButton();
         searchEditField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -134,7 +149,6 @@ public class EditJFrame extends javax.swing.JFrame {
         searchRemoveField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jInternalFrame1 = new javax.swing.JInternalFrame();
-        jPanel2 = new javax.swing.JPanel();
         fNRemoveField = new javax.swing.JTextField();
         lNRemoveField = new javax.swing.JTextField();
         gRemoveField = new javax.swing.JTextField();
@@ -159,6 +173,8 @@ public class EditJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         msgRemove = new javax.swing.JLabel();
         removeButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        pfpRemoveLabel = new javax.swing.JLabel();
         searchRemoveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -186,19 +202,6 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 106, Short.MAX_VALUE)
-        );
-
         uploadButton.setText("UPLOAD");
         uploadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -206,7 +209,7 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         });
 
-        addButton.setText("ADD EMPLOYEE");
+        addButton.setText("ADD");
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
@@ -302,66 +305,65 @@ public class EditJFrame extends javax.swing.JFrame {
         addTabLayout.setHorizontalGroup(
             addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addTabLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addTabLayout.createSequentialGroup()
+                            .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(addTabLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(pfpText))
+                                .addGroup(addTabLayout.createSequentialGroup()
+                                    .addGap(22, 22, 22)
+                                    .addComponent(uploadButton))
+                                .addGroup(addTabLayout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(pfpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(37, 37, 37)
+                            .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(addTabLayout.createSequentialGroup()
+                                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(gText)
+                                        .addComponent(gField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(deducText)
+                                        .addComponent(deducField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
+                                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(fNField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(fNText))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lNText)
+                                        .addComponent(lNField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
+                                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(empNumText)
+                                        .addComponent(empNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(locText)
+                                        .addComponent(locField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(addTabLayout.createSequentialGroup()
+                            .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(pteButton)
+                                .addComponent(fteButton))
+                            .addGap(18, 18, 18)
+                            .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(ftePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ptePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(addTabLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addTabLayout.createSequentialGroup()
-                                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(addTabLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(pfpText))
-                                    .addGroup(addTabLayout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addComponent(uploadButton))
-                                    .addGroup(addTabLayout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(37, 37, 37)
-                                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(addTabLayout.createSequentialGroup()
-                                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(gText)
-                                            .addComponent(gField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(deducText)
-                                            .addComponent(deducField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
-                                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fNField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(fNText))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lNText)
-                                            .addComponent(lNField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
-                                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(empNumText)
-                                            .addComponent(empNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(locText)
-                                            .addComponent(locField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(addTabLayout.createSequentialGroup()
-                                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pteButton)
-                                    .addComponent(fteButton))
-                                .addGap(18, 18, 18)
-                                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ftePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ptePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(addTabLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(msg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(8, 8, 8)
+                        .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         addTabLayout.setVerticalGroup(
             addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addTabLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(26, 26, 26)
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fNText)
                     .addComponent(lNText)
@@ -369,7 +371,7 @@ public class EditJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addTabLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pfpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(uploadButton))
                     .addGroup(addTabLayout.createSequentialGroup()
@@ -406,25 +408,13 @@ public class EditJFrame extends javax.swing.JFrame {
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton)
                     .addComponent(msg))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ADD EMPLOYEE", addTab);
 
+        jInternalFrame2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jInternalFrame2.setVisible(true);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
 
         fNEditField.setEditable(false);
 
@@ -540,76 +530,92 @@ public class EditJFrame extends javax.swing.JFrame {
         msgEdit.setForeground(new java.awt.Color(255, 0, 0));
         msgEdit.setText("________________________________________________");
 
-        editButton.setText("UPDATE");
+        editButton.setText("MODIFY");
         editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editButtonActionPerformed(evt);
             }
         });
 
-        jButton1.setText("UPLOAD");
-        jButton1.setEnabled(false);
+        uploadEditButton.setText("UPLOAD");
+        uploadEditButton.setEnabled(false);
+        uploadEditButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uploadEditButtonActionPerformed(evt);
+            }
+        });
 
         locEditField.setEnabled(false);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pfpEditLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pfpEditLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
         jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
         jInternalFrame2Layout.setHorizontalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ftePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ptePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ftePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame2Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ptePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(msgEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editButton))
+                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(uploadEditButton)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                                .addComponent(msgEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(editButton))
+                                .addComponent(jLabel13)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel8)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel9))
                             .addGroup(jInternalFrame2Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1))
-                                .addGap(25, 25, 25)
-                                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
+                                        .addComponent(gEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel9))
-                                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
-                                                .addComponent(gEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                            .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addGap(44, 44, 44)))
-                                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11)
-                                            .addComponent(locEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel12)
-                                            .addComponent(deducEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                                        .addComponent(eNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(lNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jLabel10)
+                                        .addGap(44, 44, 44)))
+                                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(locEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(deducEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                                .addComponent(eNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(fNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame2Layout.createSequentialGroup()
                         .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9)
@@ -624,10 +630,10 @@ public class EditJFrame extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(jLabel11)
                             .addComponent(jLabel12)))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(uploadEditButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(gEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(deducEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -679,14 +685,14 @@ public class EditJFrame extends javax.swing.JFrame {
         editTabLayout.setVerticalGroup(
             editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTabLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchEditButton)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MODIFY EMPLOYEE", editTab);
@@ -699,20 +705,8 @@ public class EditJFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Search By Employee Number:");
 
+        jInternalFrame1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jInternalFrame1.setVisible(true);
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
-        );
 
         fNRemoveField.setEditable(false);
         fNRemoveField.setFocusable(false);
@@ -820,6 +814,23 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pfpRemoveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pfpRemoveLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
@@ -833,11 +844,11 @@ public class EditJFrame extends javax.swing.JFrame {
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(msgRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(msgRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(removeButton))
                             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jInternalFrame1Layout.createSequentialGroup()
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -929,19 +940,19 @@ public class EditJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchRemoveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jInternalFrame1))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         removeTabLayout.setVerticalGroup(
             removeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(removeTabLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(removeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(searchRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchRemoveButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("REMOVE EMPLOYEE", removeTab);
@@ -954,7 +965,9 @@ public class EditJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -1111,7 +1124,7 @@ public class EditJFrame extends javax.swing.JFrame {
         return dtf.format(now);  
     }
     
-    private boolean displayEmployee(boolean editing, javax.swing.JTextField searchDisplay, javax.swing.JLabel msg, javax.swing.JTextField eNDisplay, javax.swing.JTextField fNDisplay, javax.swing.JTextField lNDisplay, javax.swing.JTextField genderDisplay, javax.swing.JTextField deducDisplay, javax.swing.JTextField yearlyDisplay, javax.swing.JTextField hourlyDisplay, javax.swing.JTextField hoursWeekDisplay, javax.swing.JTextField wYrDisplay) {
+    private boolean displayEmployee(boolean editing, javax.swing.JTextField searchDisplay, javax.swing.JLabel msg, javax.swing.JLabel pfpDisplay, javax.swing.JTextField eNDisplay, javax.swing.JTextField fNDisplay, javax.swing.JTextField lNDisplay, javax.swing.JTextField genderDisplay, javax.swing.JTextField deducDisplay, javax.swing.JTextField yearlyDisplay, javax.swing.JTextField hourlyDisplay, javax.swing.JTextField hoursWeekDisplay, javax.swing.JTextField wYrDisplay) {
         String strENToFind = searchDisplay.getText();
         if (strENToFind.isEmpty()) {
             msg.setText("Input an employee number to search!");
@@ -1136,12 +1149,18 @@ public class EditJFrame extends javax.swing.JFrame {
             return false;
             
         } else {
+            ImageIcon empPfp = empFound.pfp;
+            String file = empPfp.getDescription();
+            Image imageFit = empPfp.getImage().getScaledInstance(pfpDisplay.getWidth(), pfpDisplay.getHeight(), Image.SCALE_DEFAULT);
+            pfpDisplay.setIcon(new ImageIcon(imageFit, file));
+            
             eNDisplay.setText(Integer.toString(empFound.empNumber));
             fNDisplay.setText(empFound.firstName);
             lNDisplay.setText(empFound.lastName);
             genderDisplay.setText(empFound.gender);
             if (editing) {
                 locEditField.setSelectedIndex(empFound.workLoc);
+                pfpEdit = empPfp;
             } else {
                 locRemoveField.setText(locArray.get(empFound.workLoc));
             }
@@ -1164,8 +1183,6 @@ public class EditJFrame extends javax.swing.JFrame {
     }
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        System.out.print(theHT);
-        
         msg.setForeground(Color.red);
         javax.swing.JTextField[] addFieldsArray = {empNumField, fNField, lNField, gField, deducField, yearlyField, hourlyField, hoursWeekField, wYrField};
         String strEN = empNumField.getText(), fN = fNField.getText(), lN = lNField.getText(), g = gField.getText(), strDeduc = deducField.getText();
@@ -1183,8 +1200,9 @@ public class EditJFrame extends javax.swing.JFrame {
                 double deduc = Double.parseDouble(strDeduc), salary = Double.parseDouble(strSalary);
                 String date = getDate();
                 
-                FTE theFTE = new FTE(date, eN, fN, lN, g, loc, deduc, salary);
+                FTE theFTE = new FTE(date, pfp, eN, fN, lN, g, loc, deduc, salary);
                 theHT.addEmployee(theFTE);
+                mainFrame.updateTable();
                 
                 msg.setForeground(new Color(102, 153, 0));
                 msg.setText("Full time employee added!");
@@ -1192,6 +1210,7 @@ public class EditJFrame extends javax.swing.JFrame {
                 
                 clearFields(addFieldsArray);
                 clearUniqueAddFields();
+                pfpLabel.setIcon(defaultPfp);
             }
             
         } else if (pteButton.isSelected()) {
@@ -1204,14 +1223,16 @@ public class EditJFrame extends javax.swing.JFrame {
                 double deduc = Double.parseDouble(strDeduc), hourly = Double.parseDouble(strHourly), hPW = Double.parseDouble(strHPW);
                 String date = getDate();
                 
-                PTE thePTE = new PTE(date, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
+                PTE thePTE = new PTE(date, pfp, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
                 theHT.addEmployee(thePTE);
+                mainFrame.updateTable();
                 
                 msg.setForeground(new Color(102, 153, 0));
                 msg.setText("Part time employee added!");
                 msg.setVisible(true);
                 clearFields(addFieldsArray);
                 clearUniqueAddFields();
+                pfpLabel.setIcon(defaultPfp);
             }            
         
         } else {
@@ -1241,12 +1262,15 @@ public class EditJFrame extends javax.swing.JFrame {
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         int eNToRemove = Integer.parseInt(eNRemoveField.getText());
         theHT.removeEmployee(eNToRemove);
+        mainFrame.updateTable();
+        
         msgRemove.setText("Employee " + eNToRemove + " removed!");
         msgRemove.setForeground(new Color(102, 153, 0)); 
         msgRemove.setVisible(true);
         
         javax.swing.JTextField[] removeFieldsArray = {searchRemoveField, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, locRemoveField, deducRemoveField, yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField};
         clearFields(removeFieldsArray);
+        pfpRemoveLabel.setIcon(null);
         removeButton.setEnabled(false);
     }//GEN-LAST:event_removeButtonActionPerformed
 
@@ -1257,7 +1281,7 @@ public class EditJFrame extends javax.swing.JFrame {
         javax.swing.JTextField[] uncertainFields = {yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField};
         clearFields(uncertainFields);
         
-        boolean employeeDisplayed = displayEmployee(false, searchRemoveField, msgRemove, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, deducRemoveField, yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField);
+        boolean employeeDisplayed = displayEmployee(false, searchRemoveField, msgRemove, pfpRemoveLabel, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, deducRemoveField, yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField);
         if (employeeDisplayed) {
             removeButton.setEnabled(true);
         }
@@ -1290,8 +1314,9 @@ public class EditJFrame extends javax.swing.JFrame {
                 double deduc = Double.parseDouble(strDeduc), salary = Double.parseDouble(strSalary);
                 
                 theHT.removeEmployee(eNToEdit);
-                FTE theFTE = new FTE(empDate, eN, fN, lN, g, loc, deduc, salary);
+                FTE theFTE = new FTE(empDate, pfpEdit, eN, fN, lN, g, loc, deduc, salary);
                 theHT.addEmployee(theFTE);
+                mainFrame.updateTable();
                 
                 msgEdit.setText("Employee edited!");
                 msgEdit.setForeground(new Color(102, 153, 0)); 
@@ -1299,8 +1324,10 @@ public class EditJFrame extends javax.swing.JFrame {
                 
                 clearFields(editFieldsArray);
                 clearUniqueEditFields();
+                pfpEditLabel.setIcon(null);
                 
                 editButton.setEnabled(false);
+                uploadEditButton.setEnabled(false);
                 for (javax.swing.JTextField field : editFieldsArray) {
                     field.setEditable(false);
                 }
@@ -1319,8 +1346,9 @@ public class EditJFrame extends javax.swing.JFrame {
                 double deduc = Double.parseDouble(strDeduc), hourly = Double.parseDouble(strHourly), hPW = Double.parseDouble(strHPW);
                 
                 theHT.removeEmployee(eNToEdit);
-                PTE thePTE = new PTE(empDate, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
+                PTE thePTE = new PTE(empDate, pfpEdit, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
                 theHT.addEmployee(thePTE);
+                mainFrame.updateTable();
                 
                 msgEdit.setText("Employee edited!");
                 msgEdit.setForeground(new Color(102, 153, 0)); 
@@ -1328,8 +1356,10 @@ public class EditJFrame extends javax.swing.JFrame {
                 
                 clearFields(editFieldsArray);
                 clearUniqueEditFields();
+                pfpEditLabel.setIcon(null);
                 
                 editButton.setEnabled(false);
+                uploadEditButton.setEnabled(false);
                 for (javax.swing.JTextField field : editFieldsArray) {
                     field.setEditable(false);
                 }
@@ -1349,11 +1379,12 @@ public class EditJFrame extends javax.swing.JFrame {
         msgEdit.setVisible(false);
         msgEdit.setForeground(Color.red);
         
-        boolean employeeDisplayed = displayEmployee(true, searchEditField, msgEdit, eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yearlyEditField, hourlyEditField, hoursWeekEditField, wYrEditField);
+        boolean employeeDisplayed = displayEmployee(true, searchEditField, msgEdit, pfpEditLabel, eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yearlyEditField, hourlyEditField, hoursWeekEditField, wYrEditField);
         if (employeeDisplayed) {
             editButton.setEnabled(true);
-            javax.swing.JTextField[] editFields = {fNEditField, lNEditField, gEditField, deducEditField};
-            for (javax.swing.JTextField field : editFields) {
+            uploadEditButton.setEnabled(true);
+            javax.swing.JTextField[] editableFields = {fNEditField, lNEditField, gEditField, deducEditField};
+            for (javax.swing.JTextField field : editableFields) {
                 field.setEditable(true);
             }
             locEditField.setEnabled(true);
@@ -1390,8 +1421,30 @@ public class EditJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_pteEditButtonStateChanged
 
     private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
-        //
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "jpeg");
+        fileChooser.setFileFilter(filter);
+        int selected = fileChooser.showOpenDialog(this);
+        if (selected == JFileChooser.APPROVE_OPTION) {
+            String file = fileChooser.getSelectedFile().getAbsolutePath();
+            Image image = new ImageIcon(file).getImage().getScaledInstance(pfpLabel.getWidth(), pfpLabel.getHeight(), Image.SCALE_DEFAULT);
+            pfp = new ImageIcon(image, file);
+            pfpLabel.setIcon(pfp);
+        }
     }//GEN-LAST:event_uploadButtonActionPerformed
+
+    private void uploadEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadEditButtonActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "jpeg");
+        fileChooser.setFileFilter(filter);
+        int selected = fileChooser.showOpenDialog(this);
+        if (selected == JFileChooser.APPROVE_OPTION) {
+            String file = fileChooser.getSelectedFile().getAbsolutePath();
+            Image image = new ImageIcon(file).getImage().getScaledInstance(pfpEditLabel.getWidth(), pfpEditLabel.getHeight(), Image.SCALE_DEFAULT);
+            pfpEdit = new ImageIcon(image, file);
+            pfpEditLabel.setIcon(pfpEdit);
+        }
+    }//GEN-LAST:event_uploadEditButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1470,8 +1523,6 @@ public class EditJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel hrsWeekText;
     private javax.swing.JLabel hrsWeekText1;
     private javax.swing.JLabel hrsWeekText2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JInternalFrame jInternalFrame2;
     private javax.swing.JLabel jLabel1;
@@ -1490,7 +1541,6 @@ public class EditJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField lNEditField;
     private javax.swing.JTextField lNField;
@@ -1503,6 +1553,9 @@ public class EditJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel msg;
     private javax.swing.JLabel msgEdit;
     private javax.swing.JLabel msgRemove;
+    private javax.swing.JLabel pfpEditLabel;
+    private javax.swing.JLabel pfpLabel;
+    private javax.swing.JLabel pfpRemoveLabel;
     private javax.swing.JLabel pfpText;
     private javax.swing.JLabel pteArrow;
     private javax.swing.JRadioButton pteButton;
@@ -1517,6 +1570,7 @@ public class EditJFrame extends javax.swing.JFrame {
     private javax.swing.JButton searchRemoveButton;
     private javax.swing.JTextField searchRemoveField;
     private javax.swing.JButton uploadButton;
+    private javax.swing.JButton uploadEditButton;
     private javax.swing.JTextField wYrEditField;
     private javax.swing.JTextField wYrField;
     private javax.swing.JTextField wYrRemoveField;

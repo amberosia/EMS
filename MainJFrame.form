@@ -137,7 +137,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="10" rowCount="0">
                     <Column editable="false" title="Add Date" type="java.lang.Object"/>
-                    <Column editable="false" title="Image" type="java.lang.Object"/>
+                    <Column editable="false" title="Profile Picture" type="java.lang.Object"/>
                     <Column editable="false" title="Employee Number" type="java.lang.Object"/>
                     <Column editable="false" title="First Name" type="java.lang.Object"/>
                     <Column editable="false" title="Last Name" type="java.lang.Object"/>
@@ -202,6 +202,8 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="rowHeight" type="int" value="53"/>
+                <Property name="showVerticalLines" type="boolean" value="true"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -221,7 +223,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="12" rowCount="0">
                     <Column editable="false" title="Add Date" type="java.lang.Object"/>
-                    <Column editable="false" title="Image" type="java.lang.Object"/>
+                    <Column editable="false" title="Profile Picture" type="java.lang.Object"/>
                     <Column editable="false" title="Employee Number" type="java.lang.Object"/>
                     <Column editable="false" title="First Name" type="java.lang.Object"/>
                     <Column editable="false" title="Last Name" type="java.lang.Object"/>
@@ -298,6 +300,8 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="rowHeight" type="int" value="53"/>
+                <Property name="showVerticalLines" type="boolean" value="true"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
@@ -345,7 +349,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="locButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="EDIT LOCATIONS"/>
+            <Property name="text" type="java.lang.String" value="LOCATIONS"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="locButtonActionPerformed"/>

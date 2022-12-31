@@ -13,11 +13,12 @@ import java.util.ArrayList;
  * @author jenna
  */
 public class LocationJFrame extends javax.swing.JFrame {
+    private MainJFrame mainFrame;
     
     private ArrayList<String> locArray;
     
     /**
-     * Creates new form LocationJFrame
+     * Creates new form LocationJFrame 
      */
     
     public LocationJFrame() {
@@ -25,9 +26,12 @@ public class LocationJFrame extends javax.swing.JFrame {
         
         locList.setModel(listModel);
         locList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         pack();        
+    }
+    
+    public void passMainFrame(MainJFrame mainFrame) {
+        this.mainFrame = mainFrame;
     }
 
     public void setLocArray(ArrayList<String> locArrayRef) {
@@ -50,7 +54,7 @@ public class LocationJFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         locList = new javax.swing.JList<>();
         addLocButton = new javax.swing.JButton();
-        deactivateButton = new javax.swing.JButton();
+        removeLocButton = new javax.swing.JButton();
         addLocField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -70,10 +74,10 @@ public class LocationJFrame extends javax.swing.JFrame {
             }
         });
 
-        deactivateButton.setText("REMOVE SELECTED");
-        deactivateButton.addActionListener(new java.awt.event.ActionListener() {
+        removeLocButton.setText("REMOVE SELECTED");
+        removeLocButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deactivateButtonActionPerformed(evt);
+                removeLocButtonActionPerformed(evt);
             }
         });
 
@@ -84,7 +88,7 @@ public class LocationJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deactivateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removeLocButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addLocField)
@@ -102,7 +106,7 @@ public class LocationJFrame extends javax.swing.JFrame {
                     .addComponent(addLocField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addLocButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deactivateButton)
+                .addComponent(removeLocButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -122,15 +126,16 @@ public class LocationJFrame extends javax.swing.JFrame {
         for (int i = 0; i < listModel.getSize(); i++) {
              locArray.add(String.valueOf(listModel.getElementAt(i)));
         }
+        mainFrame.updateTable();
     }//GEN-LAST:event_formWindowClosing
 
-    private void deactivateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deactivateButtonActionPerformed
+    private void removeLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLocButtonActionPerformed
         int index = locList.getSelectedIndex();
-        if (index != -1) {
+        if (index != -1 && !locList.getSelectedValue().contains("[CLOSED]")) {
             String element = locList.getSelectedValue();
-            listModel.setElementAt(element + " [INACTIVE]", index);
+            listModel.setElementAt(element + " [CLOSED]", index);
         }
-    }//GEN-LAST:event_deactivateButtonActionPerformed
+    }//GEN-LAST:event_removeLocButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,8 +175,8 @@ public class LocationJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addLocButton;
     private javax.swing.JTextField addLocField;
-    private javax.swing.JButton deactivateButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> locList;
+    private javax.swing.JButton removeLocButton;
     // End of variables declaration//GEN-END:variables
 }

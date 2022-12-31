@@ -1,5 +1,11 @@
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Component;
+import java.awt.Image;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -26,9 +32,10 @@ public class MainJFrame extends javax.swing.JFrame {
         locArray = new ArrayList<>();
         locArray.add("Mississauga");
         locArray.add("Toronto");
+        
         setExtendedState(MainJFrame.MAXIMIZED_BOTH); 
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,7 +77,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Add Date", "Image", "Employee Number", "First Name", "Last Name", "Gender", "Yearly Salary", "Deduction Rate", "Net Income", "Location"
+                "Add Date", "Profile Picture", "Employee Number", "First Name", "Last Name", "Gender", "Yearly Salary", "Deduction Rate", "Net Income", "Location"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -81,6 +88,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        fteTable.setRowHeight(53);
+        fteTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(fteTable);
 
         pteTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -88,7 +97,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Add Date", "Image", "Employee Number", "First Name", "Last Name", "Gender", "Hourly Wage", "Hours/Week", "Weeks/Year", "Deduction Rate", "Net Income", "Location"
+                "Add Date", "Profile Picture", "Employee Number", "First Name", "Last Name", "Gender", "Hourly Wage", "Hours/Week", "Weeks/Year", "Deduction Rate", "Net Income", "Location"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -99,6 +108,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        pteTable.setRowHeight(53);
+        pteTable.setShowVerticalLines(true);
         jScrollPane3.setViewportView(pteTable);
 
         refreshButton.setText("⟳");
@@ -119,7 +130,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("EMPLOYEE MANAGEMENT SYSTEM");
 
-        locButton.setText("EDIT LOCATIONS");
+        locButton.setText("LOCATIONS");
         locButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 locButtonActionPerformed(evt);
@@ -200,24 +211,46 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+   
+    static class ImageRenderer extends DefaultTableCellRenderer {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            label.setHorizontalAlignment(JLabel.CENTER);
+            label.setText(null);
+            label.setIcon((ImageIcon)value);
+            return label;
+        }
+    }
 
+    
     public void updateTable() {
         totalText.setText("Total Employees: " + theHT.getNumInHashTable());
         DefaultTableModel fteModel = (DefaultTableModel) fteTable.getModel();
         fteTable.setModel(fteModel);
         fteModel.setRowCount(0);
+        fteTable.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+        
         DefaultTableModel pteModel = (DefaultTableModel) pteTable.getModel();
         pteTable.setModel(pteModel);
         pteModel.setRowCount(0);
+        pteTable.getColumnModel().getColumn(1).setCellRenderer(new ImageRenderer());
+                
         for (int i = 0; i < 10; i++) {            
             for (int j = 0; j < theHT.buckets[i].size(); j++) {
                 ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
                 EmployeeInfo empToDisplay = theBucket.get(j);
                 if (empToDisplay instanceof FTE fte) {
-                    Object[] row = { fte.date, 0, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), locArray.get(fte.workLoc)};
+                    Image fteImage = fte.pfp.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
+                    ImageIcon ftePfp = new ImageIcon(fteImage);
+                    
+                    Object[] row = { fte.date, ftePfp, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), locArray.get(fte.workLoc)};
                     fteModel.addRow(row);
                 } else if (empToDisplay instanceof PTE pte) {
-                    Object[] row = { pte.date, 0, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), locArray.get(pte.workLoc)};
+                    Image pteImage = pte.pfp.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
+                    ImageIcon ptePfp = new ImageIcon(pteImage);
+                    
+                    Object[] row = { pte.date, ptePfp, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), locArray.get(pte.workLoc)};
                     pteModel.addRow(row);
                 }
             }
@@ -226,6 +259,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         EditJFrame editFrame = new EditJFrame();
+        editFrame.passMainFrame(this);
         editFrame.setVisible(true);
         editFrame.setHT(theHT);
         editFrame.setEditLocArray(locArray);
@@ -237,6 +271,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
     private void locButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locButtonActionPerformed
         LocationJFrame locationFrame = new LocationJFrame();
+        locationFrame.passMainFrame(this);
         locationFrame.setVisible(true);
         locationFrame.setLocArray(locArray);
     }//GEN-LAST:event_locButtonActionPerformed
