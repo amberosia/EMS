@@ -39,7 +39,7 @@ public class EditJFrame extends javax.swing.JFrame {
         msgEdit.setVisible(false);
         editButton.setEnabled(false);
     
-        defaultPfp = new ImageIcon(getClass().getResource("defaultPfp.png"), getClass().getResource("defaultPfp.png").toString());
+        defaultPfp = new ImageIcon("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\assets\\defaultPfp.png", "C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\assets\\defaultPfp.png");
         pfp = defaultPfp;
         pfpLabel.setIcon(pfp);
         
@@ -47,7 +47,7 @@ public class EditJFrame extends javax.swing.JFrame {
         pack();
     }
     
-        public void passMainFrame(MainJFrame mainFrame) {
+    public void passMainFrame(MainJFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
     
@@ -984,22 +984,27 @@ public class EditJFrame extends javax.swing.JFrame {
         addButtonGroup.clearSelection();
         ftePanel.setVisible(false);
         ptePanel.setVisible(false);
+        pfp = defaultPfp;
+        pfpLabel.setIcon(defaultPfp);
     }
     
     private void clearUniqueEditFields() {
         locEditField.setSelectedIndex(0);
         editButtonGroup.clearSelection();
+        pfpEditLabel.setIcon(null);
     }
     
-    public void missingError(javax.swing.JLabel msg) {
+    public boolean missingError(javax.swing.JLabel msg, boolean correctFields) {
         msg.setText("Missing field. Please try again!");
         msg.setVisible(true);
+        correctFields = false;
+        return correctFields;
     }
     
-    private boolean checkEmpInfo(boolean correctFields, boolean editing, javax.swing.JLabel msg, String strEN, String fN, String lN, String g, String strDeduc) {
+    private boolean checkEmpInfo(boolean correctFields, boolean editing, javax.swing.JLabel msg, String strEN, String fN, String lN, String g, int locIndex, String strDeduc) {
         if (strEN.isEmpty()) {
-            missingError(msg);
-            correctFields = false;
+            correctFields = missingError(msg, correctFields);
+            
         } else {
             try {
                 int eN = Integer.parseInt(strEN);
@@ -1018,13 +1023,11 @@ public class EditJFrame extends javax.swing.JFrame {
                 correctFields = false;
             }
         }
-        if (fN.isEmpty() || lN.isEmpty() || g.isEmpty()) {
-            missingError(msg);
-            correctFields = false;
+        if (fN.isEmpty() || lN.isEmpty() || g.isEmpty() || locIndex<0) {
+            correctFields = missingError(msg, correctFields);
         }
         if (strDeduc.isEmpty()){
-            missingError(msg);
-            correctFields = false;
+            correctFields = missingError(msg, correctFields);
         } else {
             try {
                 double deduc = Double.parseDouble(strDeduc);
@@ -1044,8 +1047,7 @@ public class EditJFrame extends javax.swing.JFrame {
     
     private boolean checkFTE(boolean correctFields, javax.swing.JLabel msg, String strSalary) {
         if (strSalary.isEmpty()){
-            missingError(msg);
-            correctFields = false;
+            correctFields = missingError(msg, correctFields);
         } else {
             try {
                 double salary = Double.parseDouble(strSalary);
@@ -1065,8 +1067,7 @@ public class EditJFrame extends javax.swing.JFrame {
     
     private boolean checkPTE(boolean correctFields, javax.swing.JLabel msg, String strHourly, String strHPW, String strWPY) {
         if (strHourly.isEmpty()){
-            missingError(msg);
-            correctFields = false;
+            correctFields = missingError(msg, correctFields);
         } else {
             try {
                 double hourly = Double.parseDouble(strHourly);
@@ -1082,8 +1083,7 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         }
         if (strHPW.isEmpty()){
-            missingError(msg);
-            correctFields = false;
+            correctFields = missingError(msg, correctFields);
         } else {
             try {
                 double hPW = Double.parseDouble(strHPW);
@@ -1099,8 +1099,7 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         }
         if (strWPY.isEmpty()){
-            missingError(msg);
-            correctFields = false;
+            correctFields = missingError(msg, correctFields);
         } else {
             try {
                 int wPY = Integer.parseInt(strWPY);
@@ -1188,7 +1187,7 @@ public class EditJFrame extends javax.swing.JFrame {
         String strEN = empNumField.getText(), fN = fNField.getText(), lN = lNField.getText(), g = gField.getText(), strDeduc = deducField.getText();
         int loc = locField.getSelectedIndex();
 
-        boolean correctFields = checkEmpInfo(true, false, msg, strEN, fN, lN, g, strDeduc);
+        boolean correctFields = checkEmpInfo(true, false, msg, strEN, fN, lN, g, loc, strDeduc);
         
         if (fteButton.isSelected()) {  
             String strSalary = yearlyField.getText();
@@ -1210,7 +1209,6 @@ public class EditJFrame extends javax.swing.JFrame {
                 
                 clearFields(addFieldsArray);
                 clearUniqueAddFields();
-                pfpLabel.setIcon(defaultPfp);
             }
             
         } else if (pteButton.isSelected()) {
@@ -1232,12 +1230,10 @@ public class EditJFrame extends javax.swing.JFrame {
                 msg.setVisible(true);
                 clearFields(addFieldsArray);
                 clearUniqueAddFields();
-                pfpLabel.setIcon(defaultPfp);
             }            
         
         } else {
-            msg.setText("Missing field. Please try again!");
-            msg.setVisible(true);
+            missingError(msg, correctFields);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -1302,7 +1298,7 @@ public class EditJFrame extends javax.swing.JFrame {
         String strEN = eNEditField.getText(), fN = fNEditField.getText(), lN = lNEditField.getText(), g = gEditField.getText(), strDeduc = deducEditField.getText();
         int loc = locEditField.getSelectedIndex();
         
-        boolean correctFields = checkEmpInfo(true, true, msgEdit, strEN, fN, lN, g, strDeduc);
+        boolean correctFields = checkEmpInfo(true, true, msgEdit, strEN, fN, lN, g, loc, strDeduc);
         
         if (fteEditButton.isSelected()) {  
             String strSalary = yearlyEditField.getText();
@@ -1324,8 +1320,7 @@ public class EditJFrame extends javax.swing.JFrame {
                 
                 clearFields(editFieldsArray);
                 clearUniqueEditFields();
-                pfpEditLabel.setIcon(null);
-                
+                                
                 editButton.setEnabled(false);
                 uploadEditButton.setEnabled(false);
                 for (javax.swing.JTextField field : editFieldsArray) {
@@ -1356,8 +1351,7 @@ public class EditJFrame extends javax.swing.JFrame {
                 
                 clearFields(editFieldsArray);
                 clearUniqueEditFields();
-                pfpEditLabel.setIcon(null);
-                
+                                
                 editButton.setEnabled(false);
                 uploadEditButton.setEnabled(false);
                 for (javax.swing.JTextField field : editFieldsArray) {
@@ -1369,8 +1363,7 @@ public class EditJFrame extends javax.swing.JFrame {
             }            
         
         } else {
-            msg.setText("Missing field. Please try again!");
-            msg.setVisible(true);
+            missingError(msgEdit, correctFields);
         }
         
     }//GEN-LAST:event_editButtonActionPerformed
@@ -1430,6 +1423,7 @@ public class EditJFrame extends javax.swing.JFrame {
             Image image = new ImageIcon(file).getImage().getScaledInstance(pfpLabel.getWidth(), pfpLabel.getHeight(), Image.SCALE_DEFAULT);
             pfp = new ImageIcon(image, file);
             pfpLabel.setIcon(pfp);
+            System.out.println(file);
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
 

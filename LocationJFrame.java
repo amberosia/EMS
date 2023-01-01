@@ -24,6 +24,8 @@ public class LocationJFrame extends javax.swing.JFrame {
     public LocationJFrame() {
         initComponents();
         
+        locMsg.setVisible(false);
+        
         locList.setModel(listModel);
         locList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,12 +58,14 @@ public class LocationJFrame extends javax.swing.JFrame {
         addLocButton = new javax.swing.JButton();
         removeLocButton = new javax.swing.JButton();
         addLocField = new javax.swing.JTextField();
+        saveButton = new javax.swing.JButton();
+        locMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
-                formWindowClosing(evt);
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
             }
         });
 
@@ -81,6 +85,16 @@ public class LocationJFrame extends javax.swing.JFrame {
             }
         });
 
+        saveButton.setText("SAVE");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        locMsg.setForeground(new java.awt.Color(102, 153, 0));
+        locMsg.setText("Location(s) saved!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +107,11 @@ public class LocationJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addLocField)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addLocButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addLocButton, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(locMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -107,7 +125,11 @@ public class LocationJFrame extends javax.swing.JFrame {
                     .addComponent(addLocButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removeLocButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveButton)
+                    .addComponent(locMsg))
+                .addContainerGap())
         );
 
         pack();
@@ -118,16 +140,9 @@ public class LocationJFrame extends javax.swing.JFrame {
     private void addLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLocButtonActionPerformed
         if (!listModel.contains(addLocField.getText())) {
             listModel.addElement(addLocField.getText());
+            addLocField.setText(null);
         }
     }//GEN-LAST:event_addLocButtonActionPerformed
-
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        locArray.clear();
-        for (int i = 0; i < listModel.getSize(); i++) {
-             locArray.add(String.valueOf(listModel.getElementAt(i)));
-        }
-        mainFrame.updateTable();
-    }//GEN-LAST:event_formWindowClosing
 
     private void removeLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLocButtonActionPerformed
         int index = locList.getSelectedIndex();
@@ -136,6 +151,19 @@ public class LocationJFrame extends javax.swing.JFrame {
             listModel.setElementAt(element + " [CLOSED]", index);
         }
     }//GEN-LAST:event_removeLocButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        locArray.clear();
+        for (int i = 0; i < listModel.getSize(); i++) {
+             locArray.add(String.valueOf(listModel.getElementAt(i)));
+        }
+        locMsg.setVisible(true);
+        mainFrame.updateTable();
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        locMsg.setVisible(false);
+    }//GEN-LAST:event_formMousePressed
 
     /**
      * @param args the command line arguments
@@ -177,6 +205,8 @@ public class LocationJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField addLocField;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> locList;
+    private javax.swing.JLabel locMsg;
     private javax.swing.JButton removeLocButton;
+    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }
