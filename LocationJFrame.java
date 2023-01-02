@@ -9,6 +9,7 @@
  * @author jenna
  */
 
+import java.awt.Color;
 import javax.swing.ListSelectionModel;
 import javax.swing.DefaultListModel;
 import java.util.ArrayList;
@@ -97,8 +98,8 @@ public class LocationJFrame extends javax.swing.JFrame {
             }
         });
 
-        locMsg.setForeground(new java.awt.Color(102, 153, 0));
-        locMsg.setText("Locations saved!");
+        locMsg.setForeground(new java.awt.Color(255, 0, 0));
+        locMsg.setText("________________________");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,16 +142,37 @@ public class LocationJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         
     private void addLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLocButtonActionPerformed
+        locMsg.setVisible(false);
+        locMsg.setForeground(Color.red);
+        
         String locToAdd = addLocField.getText();
-        if (!locToAdd.isEmpty() && !listModel.contains(locToAdd)) {
+        if (locToAdd.isEmpty()) {
+            locMsg.setText("Input location to add.");
+            locMsg.setVisible(true);
+        } else if (listModel.contains(locToAdd)) {
+            locMsg.setText("Location already exists.");
+            locMsg.setVisible(true);
+        } else if (locToAdd.contains("|")) {
+            locMsg.setText("Cannot contain | character.");
+            locMsg.setVisible(true);
+        } else {
             listModel.addElement(addLocField.getText());
             addLocField.setText(null);
         }
     }//GEN-LAST:event_addLocButtonActionPerformed
 
     private void removeLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeLocButtonActionPerformed
+        locMsg.setVisible(false);
+        locMsg.setForeground(Color.red);
+        
         int index = locList.getSelectedIndex();
-        if (index != -1 && !locList.getSelectedValue().contains("[CLOSED]")) {
+        if (index == -1) {
+            locMsg.setText("Select a location to remove.");
+            locMsg.setVisible(true);
+        } else if (locList.getSelectedValue().contains("[CLOSED]")) {
+            locMsg.setText("Location already closed.");
+            locMsg.setVisible(true);
+        } else {
             String element = locList.getSelectedValue();
             listModel.setElementAt(element + " [CLOSED]", index);
         }
@@ -162,6 +184,8 @@ public class LocationJFrame extends javax.swing.JFrame {
         for (int i = 0; i < listModel.getSize(); i++) {
              locArray.add(String.valueOf(listModel.getElementAt(i)));
         }
+        locMsg.setForeground(new Color(102, 153, 0));
+        locMsg.setText("Locations saved!");
         locMsg.setVisible(true);
         mainFrame.updateTable();
     }//GEN-LAST:event_saveLocButtonActionPerformed

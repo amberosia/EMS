@@ -367,7 +367,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             //writes locations
             for (String loc : locArray) {
-                outputString = outputString + loc + ",,";
+                outputString = outputString + loc + " | ";
             }
             
             //writes employees
@@ -377,11 +377,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
                     EmployeeInfo theEmp = theBucket.get(j);
                     if (theEmp instanceof FTE fte) {
-                        outputString = outputString + "F,," + fte.yearlySalary + ",,";
+                        outputString = outputString + "F | " + fte.yearlySalary + " | ";
                     } else if (theEmp instanceof PTE pte) {
-                        outputString = outputString + "P,," + pte.hourlyWage + ",," + pte.hoursPerWeek + ",," + pte.weeksPerYear + ",,";
+                        outputString = outputString + "P | " + pte.hourlyWage + " | " + pte.hoursPerWeek + " | " + pte.weeksPerYear + " | ";
                     }
-                    outputString = outputString + theEmp.date + ",," + theEmp.pfp.getDescription() + ",," + theEmp.empNumber + ",," + theEmp.firstName + ",," + theEmp.lastName + ",," + theEmp.gender + ",," + theEmp.workLoc + ",," + theEmp.deductRate + "\n";
+                    outputString = outputString + theEmp.date + " | " + theEmp.pfp.getDescription() + " | " + theEmp.empNumber + " | " + theEmp.firstName + " | " + theEmp.lastName + " | " + theEmp.gender + " | " + theEmp.workLoc + " | " + theEmp.deductRate + "\n";
                 }
             }
             output.write(outputString);
@@ -455,21 +455,27 @@ public class MainJFrame extends javax.swing.JFrame {
             try {
                 FileReader saveFile = new FileReader(file);
                 input = new BufferedReader(saveFile);
+                System.out.println("a");
                 
                 try {
                     //reads locations
                     String strLoc = input.readLine();
-                    locArray = new ArrayList<>(Arrays.asList(strLoc.split(",,")));
+                    locArray = new ArrayList<>(Arrays.asList(strLoc.split(" \\| ")));
+                    System.out.println("b");
                     
                     //reads employees
                     int numOfEmp = Integer.parseInt(input.readLine());
+                    System.out.println("c");
                     for (int i = 0 ; i < numOfEmp ; i++) {
                         String strTheEmp = input.readLine();
-                        String[] theEmpArray = strTheEmp.split(",,");
+                        String[] theEmpArray = strTheEmp.split(" \\| ");
+                        System.out.println("d");
 
                         if (theEmpArray[0].equals("F")) {
+                            System.out.println("e");
                             FTE theFTE = new FTE(theEmpArray[2], new ImageIcon(theEmpArray[3]), Integer.parseInt(theEmpArray[4]), theEmpArray[5], theEmpArray[6], theEmpArray[7], Integer.parseInt(theEmpArray[8]), Double.parseDouble(theEmpArray[9]), Double.parseDouble(theEmpArray[1]));
                             theHT.addEmployee(theFTE); 
+                            System.out.println("f");
                         } else if (theEmpArray[0].equals("P")) {
                             PTE thePTE = new PTE(theEmpArray[4], new ImageIcon(theEmpArray[5]), Integer.parseInt(theEmpArray[6]), theEmpArray[7], theEmpArray[8], theEmpArray[9], Integer.parseInt(theEmpArray[10]), Double.parseDouble(theEmpArray[11]), Double.parseDouble(theEmpArray[1]), Double.parseDouble(theEmpArray[2]), Integer.parseInt(theEmpArray[3]));
                             theHT.addEmployee(thePTE);

@@ -27,6 +27,9 @@ public class EditJFrame extends javax.swing.JFrame {
     final ImageIcon defaultPfp;
     private ImageIcon pfpAdd;
     private ImageIcon pfpEdit;
+    final javax.swing.JTextField[] addFieldsArray; 
+    final javax.swing.JTextField[] removeFieldsArray; 
+    final javax.swing.JTextField[] editFieldsArray; 
 
     /**
      * Creates new form EditJFrame
@@ -39,6 +42,10 @@ public class EditJFrame extends javax.swing.JFrame {
         removeButton.setEnabled(false);
         editMsg.setVisible(false);
         editButton.setEnabled(false);
+        
+        addFieldsArray = new javax.swing.JTextField[] {eNAddField, fNAddField, lNAddField, gAddField, deducAddField, yrlyAddField, hrlyAddField, hrsWAddField, wYrAddField};
+        removeFieldsArray = new javax.swing.JTextField[] {eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, locRemoveField, deducRemoveField, yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField};
+        editFieldsArray = new javax.swing.JTextField[] {eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yrlyEditField, hrlyEditField, hrsWEditField, wYrEditField};
     
         String defaultPfpPath = new File("src\\ems_assets\\defaultPfp.png").getAbsolutePath();
         defaultPfp = new ImageIcon(defaultPfpPath, defaultPfpPath);
@@ -983,13 +990,18 @@ public class EditJFrame extends javax.swing.JFrame {
     }
     
     public void missingError(javax.swing.JLabel msg) {
-        msg.setText("Missing field.");
+        msg.setText("Missing field(s).");
         msg.setVisible(true);
     }
     
     private boolean checkEmpInfo(boolean editing, javax.swing.JLabel msg, String strEN, String fN, String lN, String g, int locIndex, String strDeduc) {
+        
         if (strEN.isEmpty() || fN.isEmpty() || lN.isEmpty() || g.isEmpty() || locIndex<0 || strDeduc.isEmpty()) {
             missingError(msg);
+            return false;
+        } else if (fN.contains("|") || lN.contains("|") || g.contains("|")){
+            msg.setText("Field(s) cannot contain vertical bar character.");
+            msg.setVisible(true);
             return false;
         } else {
             try {
@@ -1182,9 +1194,7 @@ public class EditJFrame extends javax.swing.JFrame {
     
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         addMsg.setForeground(Color.red);
-        
-        javax.swing.JTextField[] addFieldsArray = {eNAddField, fNAddField, lNAddField, gAddField, deducAddField, yrlyAddField, hrlyAddField, hrsWAddField, wYrAddField};
-        
+
         String strEN = eNAddField.getText(), fN = fNAddField.getText(), lN = lNAddField.getText(), g = gAddField.getText(), strDeduc = deducAddField.getText();
         int loc = locAddField.getSelectedIndex();
         String date = getDate();
@@ -1281,7 +1291,6 @@ public class EditJFrame extends javax.swing.JFrame {
         removeMsg.setForeground(new Color(102, 153, 0)); 
         removeMsg.setVisible(true);
         
-        javax.swing.JTextField[] removeFieldsArray = {searchRemoveField, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, locRemoveField, deducRemoveField, yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField};
         clearFields(removeFieldsArray);
         pfpRemoveLabel.setIcon(null);
         removeButton.setEnabled(false);
@@ -1291,9 +1300,8 @@ public class EditJFrame extends javax.swing.JFrame {
         removeMsg.setVisible(false);
         removeMsg.setForeground(Color.red);
         
-        //regular fields will always be overrided by new data, but fte or pte fields may be empty and need to be cleared
-        javax.swing.JTextField[] uncertainFields = {yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField};
-        clearFields(uncertainFields);
+        clearFields(removeFieldsArray);
+        pfpRemoveLabel.setIcon(null);
         
         boolean employeeDisplayed = displayEmployee(false, searchRemoveField, removeMsg, pfpRemoveLabel, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, deducRemoveField, yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField);
         if (employeeDisplayed) {
@@ -1307,8 +1315,6 @@ public class EditJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchRemoveFieldFocusGained
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        javax.swing.JTextField[] editFieldsArray = {eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yrlyEditField, hrlyEditField, hrsWEditField, wYrEditField};
-        
         int eNToEdit = Integer.parseInt(eNEditField.getText());
         EmployeeInfo empToEdit = theHT.searchEmployee(eNToEdit);
         
@@ -1394,6 +1400,9 @@ public class EditJFrame extends javax.swing.JFrame {
     private void searchEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEditButtonActionPerformed
         editMsg.setVisible(false);
         editMsg.setForeground(Color.red);
+        
+        clearFields(editFieldsArray);
+        clearUniqueEditFields();
         
         boolean employeeDisplayed = displayEmployee(true, searchEditField, editMsg, pfpEditLabel, eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yrlyEditField, hrlyEditField, hrsWEditField, wYrEditField);
         if (employeeDisplayed) {
