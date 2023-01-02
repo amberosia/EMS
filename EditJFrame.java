@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.File;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
@@ -39,7 +40,8 @@ public class EditJFrame extends javax.swing.JFrame {
         editMsg.setVisible(false);
         editButton.setEnabled(false);
     
-        defaultPfp = new ImageIcon("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\assets\\defaultPfp.png", "C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\assets\\defaultPfp.png");
+        String defaultPfpPath = new File("src\\ems_assets\\defaultPfp.png").getAbsolutePath();
+        defaultPfp = new ImageIcon(defaultPfpPath, defaultPfpPath);
         pfpAdd = defaultPfp;
         pfpAddLabel.setIcon(pfpAdd);
         
@@ -1091,6 +1093,15 @@ public class EditJFrame extends javax.swing.JFrame {
         }
     }
     
+    //sets pfp to default pfp if pfp file path is null
+    private ImageIcon checkPfp(ImageIcon empImageIcon) {
+        if (new File(empImageIcon.getDescription()).exists()) {
+            return empImageIcon;
+        } else {
+            return defaultPfp;
+        }
+    }
+    
     private boolean displayEmployee(boolean editing, javax.swing.JTextField searchDisplay, javax.swing.JLabel msg, javax.swing.JLabel pfpDisplay, javax.swing.JTextField eNDisplay, javax.swing.JTextField fNDisplay, javax.swing.JTextField lNDisplay, javax.swing.JTextField genderDisplay, javax.swing.JTextField deducDisplay, javax.swing.JTextField yearlyDisplay, javax.swing.JTextField hourlyDisplay, javax.swing.JTextField hoursWeekDisplay, javax.swing.JTextField wYrDisplay) {
         String strENToFind = searchDisplay.getText();
         if (strENToFind.isEmpty()) {
@@ -1116,9 +1127,9 @@ public class EditJFrame extends javax.swing.JFrame {
             return false;
             
         } else {
-            ImageIcon empPfp = empFound.pfp;
-            Image imageFit = empPfp.getImage().getScaledInstance(pfpDisplay.getWidth(), pfpDisplay.getHeight(), Image.SCALE_DEFAULT);
-            pfpDisplay.setIcon(new ImageIcon(imageFit, empPfp.getDescription()));
+            ImageIcon pfpImageIcon = checkPfp(empFound.pfp);
+            Image pfpImageFit = pfpImageIcon.getImage().getScaledInstance(pfpDisplay.getWidth(), pfpDisplay.getHeight(), Image.SCALE_DEFAULT);
+            pfpDisplay.setIcon(new ImageIcon(pfpImageFit, pfpImageIcon.getDescription()));
             
             eNDisplay.setText(Integer.toString(empFound.empNumber));
             fNDisplay.setText(empFound.firstName);
@@ -1126,7 +1137,7 @@ public class EditJFrame extends javax.swing.JFrame {
             genderDisplay.setText(empFound.gender);
             if (editing) {
                 locEditField.setSelectedIndex(empFound.workLoc);
-                pfpEdit = empPfp;
+                pfpEdit = pfpImageIcon;
             } else {
                 locRemoveField.setText(locArray.get(empFound.workLoc));
             }

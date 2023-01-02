@@ -32,10 +32,10 @@ public class MainJFrame extends javax.swing.JFrame {
     
     private MyHashTable theHT;
     private ArrayList<String> locArray;
+    final ImageIcon defaultPfp;
     private File file;
     private String fileName;
     
-
     /**
      * Creates new form MainJFrame
      */
@@ -45,6 +45,12 @@ public class MainJFrame extends javax.swing.JFrame {
         
         theHT = new MyHashTable(10);
         locArray = new ArrayList<>();
+        
+        fileName = "No File";
+        fileText.setText(fileName);
+        
+        String defaultPfpPath = new File("src\\ems_assets\\defaultPfp.png").getAbsolutePath();
+        defaultPfp = new ImageIcon(defaultPfpPath, defaultPfpPath);
 
         saveMsg.setVisible(false); 
         fileErrorMsg.setVisible(false);
@@ -96,6 +102,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        fteTable.setAutoCreateRowSorter(true);
         fteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -116,6 +123,7 @@ public class MainJFrame extends javax.swing.JFrame {
         fteTable.setShowVerticalLines(true);
         jScrollPane1.setViewportView(fteTable);
 
+        pteTable.setAutoCreateRowSorter(true);
         pteTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -180,7 +188,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        fileText.setText("No File");
+        fileText.setText("____________");
 
         saveMsg.setForeground(new java.awt.Color(102, 153, 0));
         saveMsg.setText("Saved!");
@@ -303,6 +311,15 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }
 
+    //sets pfp to default pfp if pfp file path is null
+    private ImageIcon checkPfp(ImageIcon empImageIcon) {
+        if (new File(empImageIcon.getDescription()).exists()) {
+            return empImageIcon;
+        } else {
+            return defaultPfp;
+        }
+    }
+    
     //displays hashtable data to fteTable and pteTable
     public void updateTable() {
         totalText.setText("Total Employees: " + theHT.getNumInHashTable());
@@ -323,8 +340,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
                 EmployeeInfo empToDisplay = theBucket.get(j);
                 
-                Image empImage = empToDisplay.pfp.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
-                ImageIcon empPfp = new ImageIcon(empImage);
+                ImageIcon empImageIcon = checkPfp(empToDisplay.pfp);
+                Image empImageFit = empImageIcon.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
+                ImageIcon empPfp = new ImageIcon(empImageFit);
                     
                 if (empToDisplay instanceof FTE fte) {
                     Object[] row = { fte.date, empPfp, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), locArray.get(fte.workLoc)};
@@ -349,7 +367,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
             //writes locations
             for (String loc : locArray) {
-                outputString = outputString + loc + ",";
+                outputString = outputString + loc + ",,";
             }
             
             //writes employees
@@ -359,11 +377,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
                     EmployeeInfo theEmp = theBucket.get(j);
                     if (theEmp instanceof FTE fte) {
-                        outputString = outputString + "F," + fte.yearlySalary + ",";
+                        outputString = outputString + "F,," + fte.yearlySalary + ",,";
                     } else if (theEmp instanceof PTE pte) {
-                        outputString = outputString + "P," + pte.hourlyWage + "," + pte.hoursPerWeek + "," + pte.weeksPerYear + ",";
+                        outputString = outputString + "P,," + pte.hourlyWage + ",," + pte.hoursPerWeek + ",," + pte.weeksPerYear + ",,";
                     }
-                    outputString = outputString + theEmp.date + "," + theEmp.pfp.getDescription() + "," + theEmp.empNumber + "," + theEmp.firstName + "," + theEmp.lastName + "," + theEmp.gender + "," + theEmp.workLoc + "," + theEmp.deductRate + "\n";
+                    outputString = outputString + theEmp.date + ",," + theEmp.pfp.getDescription() + ",," + theEmp.empNumber + ",," + theEmp.firstName + ",," + theEmp.lastName + ",," + theEmp.gender + ",," + theEmp.workLoc + ",," + theEmp.deductRate + "\n";
                 }
             }
             output.write(outputString);
@@ -421,7 +439,7 @@ public class MainJFrame extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text File", "txt");
         fileChooser.setFileFilter(filter);
-        fileChooser.setCurrentDirectory(new File("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\save_files"));
+        fileChooser.setCurrentDirectory(new File("src\\ems_save_files"));
         
         int selected = fileChooser.showOpenDialog(this);        
         if (selected == JFileChooser.APPROVE_OPTION) {
@@ -439,15 +457,15 @@ public class MainJFrame extends javax.swing.JFrame {
                 input = new BufferedReader(saveFile);
                 
                 try {
-                    //read locations
+                    //reads locations
                     String strLoc = input.readLine();
-                    locArray = new ArrayList<>(Arrays.asList(strLoc.split(",")));
+                    locArray = new ArrayList<>(Arrays.asList(strLoc.split(",,")));
                     
-                    //read employees
+                    //reads employees
                     int numOfEmp = Integer.parseInt(input.readLine());
                     for (int i = 0 ; i < numOfEmp ; i++) {
                         String strTheEmp = input.readLine();
-                        String[] theEmpArray = strTheEmp.split(",");
+                        String[] theEmpArray = strTheEmp.split(",,");
 
                         if (theEmpArray[0].equals("F")) {
                             FTE theFTE = new FTE(theEmpArray[2], new ImageIcon(theEmpArray[3]), Integer.parseInt(theEmpArray[4]), theEmpArray[5], theEmpArray[6], theEmpArray[7], Integer.parseInt(theEmpArray[8]), Double.parseDouble(theEmpArray[9]), Double.parseDouble(theEmpArray[1]));

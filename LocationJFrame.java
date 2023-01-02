@@ -98,7 +98,7 @@ public class LocationJFrame extends javax.swing.JFrame {
         });
 
         locMsg.setForeground(new java.awt.Color(102, 153, 0));
-        locMsg.setText("Location(s) saved!");
+        locMsg.setText("Locations saved!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,7 +141,8 @@ public class LocationJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
         
     private void addLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLocButtonActionPerformed
-        if (!listModel.contains(addLocField.getText())) {
+        String locToAdd = addLocField.getText();
+        if (!locToAdd.isEmpty() && !listModel.contains(locToAdd)) {
             listModel.addElement(addLocField.getText());
             addLocField.setText(null);
         }

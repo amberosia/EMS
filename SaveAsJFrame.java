@@ -22,7 +22,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
     public SaveAsJFrame() {
         initComponents();
                 
-        existsMsg.setVisible(false);
+        saveAsMsg.setVisible(false);
         
         pack(); 
     }
@@ -46,7 +46,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
         fileNameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         createSaveButton = new javax.swing.JButton();
-        existsMsg = new javax.swing.JLabel();
+        saveAsMsg = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -69,8 +69,8 @@ public class SaveAsJFrame extends javax.swing.JFrame {
             }
         });
 
-        existsMsg.setForeground(new java.awt.Color(255, 0, 0));
-        existsMsg.setText("File already exists.");
+        saveAsMsg.setForeground(new java.awt.Color(255, 0, 0));
+        saveAsMsg.setText("___________________");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,7 +80,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(existsMsg)
+                        .addComponent(saveAsMsg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(createSaveButton))
                     .addGroup(layout.createSequentialGroup()
@@ -102,7 +102,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createSaveButton)
-                    .addComponent(existsMsg))
+                    .addComponent(saveAsMsg))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -110,27 +110,33 @@ public class SaveAsJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaveButtonActionPerformed
-        File parentDir = new File("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\save_files");
+        File parentDir = new File("src\\ems_save_files");
         parentDir.mkdir();
         
         String fileName = fileNameField.getText();
-        File newFile = new File(parentDir, fileName + ".txt");
-        
-        if (!newFile.exists()) {
-            try {
-                newFile.createNewFile();
-                mainFrame.saveToFile(newFile);
-                super.dispose();
-            } catch (IOException ioe) {
-                ioe.printStackTrace();
+        if (!fileName.isEmpty()) {
+            File newFile = new File(parentDir, fileName + ".txt");
+
+            if (!newFile.exists()) {
+                try {
+                    newFile.createNewFile();
+                    mainFrame.saveToFile(newFile);
+                    super.dispose();
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            } else {
+                saveAsMsg.setText("File already exists.");
+                saveAsMsg.setVisible(true);
             }
         } else {
-            existsMsg.setVisible(true);
+            saveAsMsg.setText("Input file name.");
+            saveAsMsg.setVisible(true);
         }
     }//GEN-LAST:event_createSaveButtonActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
-        existsMsg.setVisible(false);
+        saveAsMsg.setVisible(false);
     }//GEN-LAST:event_formMousePressed
 
     /**
@@ -170,10 +176,10 @@ public class SaveAsJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createSaveButton;
-    private javax.swing.JLabel existsMsg;
     private javax.swing.JTextField fileNameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel saveAsMsg;
     // End of variables declaration//GEN-END:variables
 }
