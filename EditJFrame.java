@@ -1,13 +1,4 @@
 
-import java.awt.Color;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;
-import java.util.ArrayList; 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.ImageIcon;
-import java.awt.Image;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -17,12 +8,23 @@ import java.awt.Image;
  *
  * @author jenna
  */
+
+import java.awt.Color;
+import java.util.ArrayList; 
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
 public class EditJFrame extends javax.swing.JFrame {
+    
     private MainJFrame mainFrame;
     private MyHashTable theHT;
     private ArrayList<String> locArray;
     final ImageIcon defaultPfp;
-    private ImageIcon pfp;
+    private ImageIcon pfpAdd;
     private ImageIcon pfpEdit;
 
     /**
@@ -31,37 +33,36 @@ public class EditJFrame extends javax.swing.JFrame {
     public EditJFrame() {
         initComponents();
         
-        ftePanel.setVisible(false);
-        ptePanel.setVisible(false);
-        msg.setVisible(false);
-        msgRemove.setVisible(false);
+        addMsg.setVisible(false);
+        removeMsg.setVisible(false);
         removeButton.setEnabled(false);
-        msgEdit.setVisible(false);
+        editMsg.setVisible(false);
         editButton.setEnabled(false);
     
         defaultPfp = new ImageIcon("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\assets\\defaultPfp.png", "C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\assets\\defaultPfp.png");
-        pfp = defaultPfp;
-        pfpLabel.setIcon(pfp);
+        pfpAdd = defaultPfp;
+        pfpAddLabel.setIcon(pfpAdd);
         
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         pack();
     }
     
+    //allows EditJFrame to use MainJFrame's updateTable method
     public void passMainFrame(MainJFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
     
-    public void setHT(MyHashTable theRefVal) {
-        theHT = theRefVal;
+    //gets the hashtable from MainJFrame
+    public void setHT(MyHashTable theHTRef) {
+        theHT = theHTRef;
     }
     
+    //gets the array of locations from MainJFrame
     public void setEditLocArray(ArrayList<String> locArrayRef) {
         locArray = locArrayRef;
         
         for (String loc : locArray){
-            locField.addItem(loc);
+            locAddField.addItem(loc);
         }
-        
         for (String loc : locArray){
             locEditField.addItem(loc);
         }
@@ -80,16 +81,14 @@ public class EditJFrame extends javax.swing.JFrame {
         editButtonGroup = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         addTab = new javax.swing.JPanel();
-        empNumField = new javax.swing.JTextField();
-        fNField = new javax.swing.JTextField();
-        lNField = new javax.swing.JTextField();
-        locField = new javax.swing.JComboBox<>();
-        gField = new javax.swing.JTextField();
-        fteButton = new javax.swing.JRadioButton();
-        pteButton = new javax.swing.JRadioButton();
-        deducField = new javax.swing.JTextField();
-        pfpLabel = new javax.swing.JLabel();
-        uploadButton = new javax.swing.JButton();
+        eNAddField = new javax.swing.JTextField();
+        fNAddField = new javax.swing.JTextField();
+        lNAddField = new javax.swing.JTextField();
+        locAddField = new javax.swing.JComboBox<>();
+        gAddField = new javax.swing.JTextField();
+        deducAddField = new javax.swing.JTextField();
+        pfpAddLabel = new javax.swing.JLabel();
+        uploadAddButton = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
         fNText = new javax.swing.JLabel();
         lNText = new javax.swing.JLabel();
@@ -98,36 +97,36 @@ public class EditJFrame extends javax.swing.JFrame {
         gText = new javax.swing.JLabel();
         deducText = new javax.swing.JLabel();
         pfpText = new javax.swing.JLabel();
-        ftePanel = new javax.swing.JPanel();
-        yearlyField = new javax.swing.JTextField();
+        fteAddPanel = new javax.swing.JPanel();
+        yrlyAddField = new javax.swing.JTextField();
         yearlyText = new javax.swing.JLabel();
-        fteArrow = new javax.swing.JLabel();
-        ptePanel = new javax.swing.JPanel();
+        fteAddButton = new javax.swing.JRadioButton();
+        pteAddPanel = new javax.swing.JPanel();
         hourlyText = new javax.swing.JLabel();
         hrsWeekText = new javax.swing.JLabel();
         wYrText = new javax.swing.JLabel();
-        wYrField = new javax.swing.JTextField();
-        hourlyField = new javax.swing.JTextField();
-        hoursWeekField = new javax.swing.JTextField();
-        pteArrow = new javax.swing.JLabel();
-        msg = new javax.swing.JLabel();
+        wYrAddField = new javax.swing.JTextField();
+        hrlyAddField = new javax.swing.JTextField();
+        hrsWAddField = new javax.swing.JTextField();
+        pteAddButton = new javax.swing.JRadioButton();
+        addMsg = new javax.swing.JLabel();
         editTab = new javax.swing.JPanel();
         jInternalFrame2 = new javax.swing.JInternalFrame();
         fNEditField = new javax.swing.JTextField();
         lNEditField = new javax.swing.JTextField();
         gEditField = new javax.swing.JTextField();
         deducEditField = new javax.swing.JTextField();
-        ftePanel2 = new javax.swing.JPanel();
-        yearlyEditField = new javax.swing.JTextField();
+        fteEditPanel = new javax.swing.JPanel();
+        yrlyEditField = new javax.swing.JTextField();
         yearlyText2 = new javax.swing.JLabel();
         fteEditButton = new javax.swing.JRadioButton();
-        ptePanel2 = new javax.swing.JPanel();
+        pteEditPanel = new javax.swing.JPanel();
         hourlyText2 = new javax.swing.JLabel();
         hrsWeekText2 = new javax.swing.JLabel();
         wYrText2 = new javax.swing.JLabel();
         wYrEditField = new javax.swing.JTextField();
-        hourlyEditField = new javax.swing.JTextField();
-        hoursWeekEditField = new javax.swing.JTextField();
+        hrlyEditField = new javax.swing.JTextField();
+        hrsWEditField = new javax.swing.JTextField();
         pteEditButton = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -136,7 +135,7 @@ public class EditJFrame extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         eNEditField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        msgEdit = new javax.swing.JLabel();
+        editMsg = new javax.swing.JLabel();
         editButton = new javax.swing.JButton();
         uploadEditButton = new javax.swing.JButton();
         locEditField = new javax.swing.JComboBox<>();
@@ -154,16 +153,16 @@ public class EditJFrame extends javax.swing.JFrame {
         gRemoveField = new javax.swing.JTextField();
         deducRemoveField = new javax.swing.JTextField();
         locRemoveField = new javax.swing.JTextField();
-        ftePanel1 = new javax.swing.JPanel();
-        yearlyRemoveField = new javax.swing.JTextField();
+        fteRemovePanel = new javax.swing.JPanel();
+        yrlyRemoveField = new javax.swing.JTextField();
         yearlyText1 = new javax.swing.JLabel();
-        ptePanel1 = new javax.swing.JPanel();
+        pteRemovePanel = new javax.swing.JPanel();
         hourlyText1 = new javax.swing.JLabel();
         hrsWeekText1 = new javax.swing.JLabel();
         wYrText1 = new javax.swing.JLabel();
         wYrRemoveField = new javax.swing.JTextField();
-        hourlyRemoveField = new javax.swing.JTextField();
-        hoursWeekRemoveField = new javax.swing.JTextField();
+        hrlyRemoveField = new javax.swing.JTextField();
+        hrsWRemoveField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -171,13 +170,13 @@ public class EditJFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         eNRemoveField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        msgRemove = new javax.swing.JLabel();
+        removeMsg = new javax.swing.JLabel();
         removeButton = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         pfpRemoveLabel = new javax.swing.JLabel();
         searchRemoveButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
         addTab.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -186,26 +185,10 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         });
 
-        addButtonGroup.add(fteButton);
-        fteButton.setText("Full Time");
-        fteButton.addActionListener(new java.awt.event.ActionListener() {
+        uploadAddButton.setText("UPLOAD");
+        uploadAddButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fteButtonActionPerformed(evt);
-            }
-        });
-
-        addButtonGroup.add(pteButton);
-        pteButton.setText("Part Time");
-        pteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pteButtonActionPerformed(evt);
-            }
-        });
-
-        uploadButton.setText("UPLOAD");
-        uploadButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadButtonActionPerformed(evt);
+                uploadAddButtonActionPerformed(evt);
             }
         });
 
@@ -230,29 +213,37 @@ public class EditJFrame extends javax.swing.JFrame {
 
         pfpText.setText("Profile Picture:");
 
+        yrlyAddField.setEditable(false);
+
         yearlyText.setText("Yearly Salary:");
 
-        fteArrow.setText(">");
+        addButtonGroup.add(fteAddButton);
+        fteAddButton.setText("Full Time  >");
+        fteAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fteAddButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout ftePanelLayout = new javax.swing.GroupLayout(ftePanel);
-        ftePanel.setLayout(ftePanelLayout);
-        ftePanelLayout.setHorizontalGroup(
-            ftePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ftePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(fteArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+        javax.swing.GroupLayout fteAddPanelLayout = new javax.swing.GroupLayout(fteAddPanel);
+        fteAddPanel.setLayout(fteAddPanelLayout);
+        fteAddPanelLayout.setHorizontalGroup(
+            fteAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteAddPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(fteAddButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(yearlyText, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(yearlyField, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addComponent(yrlyAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(115, 115, 115))
         );
-        ftePanelLayout.setVerticalGroup(
-            ftePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ftePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(fteArrow)
+        fteAddPanelLayout.setVerticalGroup(
+            fteAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(yearlyText)
-                .addComponent(yearlyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(yrlyAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fteAddButton))
         );
 
         hourlyText.setText("Hourly Wage:");
@@ -261,109 +252,111 @@ public class EditJFrame extends javax.swing.JFrame {
 
         wYrText.setText("W/Yr:");
 
-        pteArrow.setText(">");
+        wYrAddField.setEditable(false);
 
-        javax.swing.GroupLayout ptePanelLayout = new javax.swing.GroupLayout(ptePanel);
-        ptePanel.setLayout(ptePanelLayout);
-        ptePanelLayout.setHorizontalGroup(
-            ptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ptePanelLayout.createSequentialGroup()
+        hrlyAddField.setEditable(false);
+
+        hrsWAddField.setEditable(false);
+
+        addButtonGroup.add(pteAddButton);
+        pteAddButton.setText("Part Time  >");
+        pteAddButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pteAddButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pteAddPanelLayout = new javax.swing.GroupLayout(pteAddPanel);
+        pteAddPanel.setLayout(pteAddPanelLayout);
+        pteAddPanelLayout.setHorizontalGroup(
+            pteAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pteAddPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pteArrow, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pteAddButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hourlyText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hourlyField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addComponent(hrlyAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hrsWeekText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hoursWeekField, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hrsWAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wYrText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(wYrField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(wYrAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        ptePanelLayout.setVerticalGroup(
-            ptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pteAddPanelLayout.setVerticalGroup(
+            pteAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pteAddPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(hourlyText)
-                .addComponent(hourlyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrlyAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(hrsWeekText)
-                .addComponent(hoursWeekField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrsWAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(wYrText)
-                .addComponent(wYrField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(pteArrow))
+                .addComponent(wYrAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pteAddButton))
         );
 
-        msg.setForeground(new java.awt.Color(255, 0, 0));
-        msg.setText("______________________________________________________");
-        msg.setToolTipText("");
+        addMsg.setForeground(new java.awt.Color(255, 0, 0));
+        addMsg.setText("______________________________________________________");
+        addMsg.setToolTipText("");
 
         javax.swing.GroupLayout addTabLayout = new javax.swing.GroupLayout(addTab);
         addTab.setLayout(addTabLayout);
         addTabLayout.setHorizontalGroup(
             addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(addTabLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
+                .addContainerGap(18, Short.MAX_VALUE)
+                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fteAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(addTabLayout.createSequentialGroup()
                             .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(addTabLayout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(pfpText))
-                                .addGroup(addTabLayout.createSequentialGroup()
-                                    .addGap(22, 22, 22)
-                                    .addComponent(uploadButton))
-                                .addGroup(addTabLayout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(pfpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(37, 37, 37)
+                                .addComponent(pfpAddLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
+                                    .addComponent(uploadAddButton)
+                                    .addGap(15, 15, 15))
+                                .addComponent(pfpText))
+                            .addGap(43, 43, 43)
                             .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(addTabLayout.createSequentialGroup()
                                     .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(gText)
-                                        .addComponent(gField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(gAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(deducText)
-                                        .addComponent(deducField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(deducAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
                                     .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(fNField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(fNAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(fNText))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lNText)
-                                        .addComponent(lNField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(lNAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addTabLayout.createSequentialGroup()
                                     .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(empNumText)
-                                        .addComponent(empNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(eNAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(locText)
-                                        .addComponent(locField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(locAddField, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(addTabLayout.createSequentialGroup()
-                            .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(pteButton)
-                                .addComponent(fteButton))
-                            .addGap(18, 18, 18)
-                            .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ftePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ptePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(addTabLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(msg, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addComponent(addMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(2, 2, 2))
+                        .addComponent(pteAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(40, 40, 40))
         );
         addTabLayout.setVerticalGroup(
             addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addTabLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fNText)
                     .addComponent(lNText)
@@ -371,44 +364,38 @@ public class EditJFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addTabLayout.createSequentialGroup()
-                        .addComponent(pfpLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pfpAddLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(uploadButton))
+                        .addComponent(uploadAddButton))
                     .addGroup(addTabLayout.createSequentialGroup()
                         .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lNField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fNField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lNAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fNAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(empNumText)
                             .addComponent(locText))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(empNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(locField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(eNAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(locAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(gText)
                             .addComponent(deducText))
                         .addGap(5, 5, 5)
                         .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(gField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deducField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(addTabLayout.createSequentialGroup()
-                        .addComponent(fteButton)
-                        .addGap(7, 7, 7)
-                        .addComponent(pteButton))
-                    .addGroup(addTabLayout.createSequentialGroup()
-                        .addComponent(ftePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ptePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
+                            .addComponent(gAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deducAddField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19)
+                .addComponent(fteAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(pteAddPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(addTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(msg))
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(addMsg)
+                    .addComponent(addButton))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("ADD EMPLOYEE", addTab);
@@ -424,40 +411,40 @@ public class EditJFrame extends javax.swing.JFrame {
 
         deducEditField.setEditable(false);
 
-        yearlyEditField.setEditable(false);
+        yrlyEditField.setEditable(false);
 
         yearlyText2.setText("Yearly Salary:");
 
         editButtonGroup.add(fteEditButton);
         fteEditButton.setText("Full Time  >");
         fteEditButton.setEnabled(false);
-        fteEditButton.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                fteEditButtonStateChanged(evt);
+        fteEditButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                fteEditButtonItemStateChanged(evt);
             }
         });
 
-        javax.swing.GroupLayout ftePanel2Layout = new javax.swing.GroupLayout(ftePanel2);
-        ftePanel2.setLayout(ftePanel2Layout);
-        ftePanel2Layout.setHorizontalGroup(
-            ftePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ftePanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout fteEditPanelLayout = new javax.swing.GroupLayout(fteEditPanel);
+        fteEditPanel.setLayout(fteEditPanelLayout);
+        fteEditPanelLayout.setHorizontalGroup(
+            fteEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteEditPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(fteEditButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(yearlyText2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(yearlyEditField, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                .addComponent(yrlyEditField, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
         );
-        ftePanel2Layout.setVerticalGroup(
-            ftePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ftePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        fteEditPanelLayout.setVerticalGroup(
+            fteEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(yearlyText2)
-                .addComponent(yearlyEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(yrlyEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(fteEditButton))
         );
 
-        ptePanel2.setFocusable(false);
+        pteEditPanel.setFocusable(false);
 
         hourlyText2.setText("Hourly Wage:");
 
@@ -467,9 +454,9 @@ public class EditJFrame extends javax.swing.JFrame {
 
         wYrEditField.setEditable(false);
 
-        hourlyEditField.setEditable(false);
+        hrlyEditField.setEditable(false);
 
-        hoursWeekEditField.setEditable(false);
+        hrsWEditField.setEditable(false);
 
         editButtonGroup.add(pteEditButton);
         pteEditButton.setText("Part Time >");
@@ -480,32 +467,32 @@ public class EditJFrame extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout ptePanel2Layout = new javax.swing.GroupLayout(ptePanel2);
-        ptePanel2.setLayout(ptePanel2Layout);
-        ptePanel2Layout.setHorizontalGroup(
-            ptePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ptePanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pteEditPanelLayout = new javax.swing.GroupLayout(pteEditPanel);
+        pteEditPanel.setLayout(pteEditPanelLayout);
+        pteEditPanelLayout.setHorizontalGroup(
+            pteEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pteEditPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(pteEditButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hourlyText2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hourlyEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrlyEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(hrsWeekText2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(hoursWeekEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrsWEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wYrText2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wYrEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, Short.MAX_VALUE))
         );
-        ptePanel2Layout.setVerticalGroup(
-            ptePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ptePanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(hourlyEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        pteEditPanelLayout.setVerticalGroup(
+            pteEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pteEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(hrlyEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(hrsWeekText2)
-                .addComponent(hoursWeekEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrsWEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(wYrText2)
                 .addComponent(wYrEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(hourlyText2)
@@ -527,8 +514,8 @@ public class EditJFrame extends javax.swing.JFrame {
 
         jLabel13.setText("Employee #:");
 
-        msgEdit.setForeground(new java.awt.Color(255, 0, 0));
-        msgEdit.setText("________________________________________________");
+        editMsg.setForeground(new java.awt.Color(255, 0, 0));
+        editMsg.setText("________________________________________________");
 
         editButton.setText("MODIFY");
         editButton.addActionListener(new java.awt.event.ActionListener() {
@@ -567,14 +554,9 @@ public class EditJFrame extends javax.swing.JFrame {
         jInternalFrame2Layout.setHorizontalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ftePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ptePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
-                        .addComponent(msgEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editButton))
+                    .addComponent(fteEditPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jInternalFrame2Layout.createSequentialGroup()
                         .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(uploadEditButton)
@@ -607,7 +589,12 @@ public class EditJFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(fNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lNEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(pteEditPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jInternalFrame2Layout.createSequentialGroup()
+                        .addComponent(editMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(editButton)))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         jInternalFrame2Layout.setVerticalGroup(
@@ -639,13 +626,13 @@ public class EditJFrame extends javax.swing.JFrame {
                         .addComponent(deducEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(locEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ftePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fteEditPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ptePanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pteEditPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editButton)
-                    .addComponent(msgEdit))
+                    .addComponent(editMsg))
                 .addGap(16, 16, 16))
         );
 
@@ -668,31 +655,29 @@ public class EditJFrame extends javax.swing.JFrame {
         editTab.setLayout(editTabLayout);
         editTabLayout.setHorizontalGroup(
             editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTabLayout.createSequentialGroup()
-                .addGroup(editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, editTabLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(searchEditField, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(editTabLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jInternalFrame2)
                     .addGroup(editTabLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jInternalFrame2)))
-                .addGap(27, 27, 27))
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchEditField)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(searchEditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(20, 20, 20))
         );
         editTabLayout.setVerticalGroup(
             editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editTabLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addGroup(editTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchEditField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchEditButton)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jInternalFrame2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MODIFY EMPLOYEE", editTab);
@@ -723,26 +708,26 @@ public class EditJFrame extends javax.swing.JFrame {
         locRemoveField.setEditable(false);
         locRemoveField.setFocusable(false);
 
-        yearlyRemoveField.setEditable(false);
-        yearlyRemoveField.setFocusable(false);
+        yrlyRemoveField.setEditable(false);
+        yrlyRemoveField.setFocusable(false);
 
         yearlyText1.setText("Yearly Salary:");
 
-        javax.swing.GroupLayout ftePanel1Layout = new javax.swing.GroupLayout(ftePanel1);
-        ftePanel1.setLayout(ftePanel1Layout);
-        ftePanel1Layout.setHorizontalGroup(
-            ftePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ftePanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout fteRemovePanelLayout = new javax.swing.GroupLayout(fteRemovePanel);
+        fteRemovePanel.setLayout(fteRemovePanelLayout);
+        fteRemovePanelLayout.setHorizontalGroup(
+            fteRemovePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteRemovePanelLayout.createSequentialGroup()
                 .addComponent(yearlyText1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(yearlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(yrlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        ftePanel1Layout.setVerticalGroup(
-            ftePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ftePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        fteRemovePanelLayout.setVerticalGroup(
+            fteRemovePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fteRemovePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(yearlyText1)
-                .addComponent(yearlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(yrlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         hourlyText1.setText("Hourly Wage:");
@@ -754,37 +739,37 @@ public class EditJFrame extends javax.swing.JFrame {
         wYrRemoveField.setEditable(false);
         wYrRemoveField.setFocusable(false);
 
-        hourlyRemoveField.setEditable(false);
-        hourlyRemoveField.setFocusable(false);
+        hrlyRemoveField.setEditable(false);
+        hrlyRemoveField.setFocusable(false);
 
-        hoursWeekRemoveField.setEditable(false);
-        hoursWeekRemoveField.setFocusable(false);
+        hrsWRemoveField.setEditable(false);
+        hrsWRemoveField.setFocusable(false);
 
-        javax.swing.GroupLayout ptePanel1Layout = new javax.swing.GroupLayout(ptePanel1);
-        ptePanel1.setLayout(ptePanel1Layout);
-        ptePanel1Layout.setHorizontalGroup(
-            ptePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ptePanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pteRemovePanelLayout = new javax.swing.GroupLayout(pteRemovePanel);
+        pteRemovePanel.setLayout(pteRemovePanelLayout);
+        pteRemovePanelLayout.setHorizontalGroup(
+            pteRemovePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pteRemovePanelLayout.createSequentialGroup()
                 .addComponent(hourlyText1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(hourlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hrsWeekText1)
                 .addGap(12, 12, 12)
-                .addComponent(hoursWeekRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrsWRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(wYrText1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(wYrRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
-        ptePanel1Layout.setVerticalGroup(
-            ptePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ptePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pteRemovePanelLayout.setVerticalGroup(
+            pteRemovePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pteRemovePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(hourlyText1)
-                .addComponent(hourlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrlyRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(hrsWeekText1)
-                .addComponent(hoursWeekRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hrsWRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(wYrText1)
                 .addComponent(wYrRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -804,8 +789,8 @@ public class EditJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("Employee #:");
 
-        msgRemove.setForeground(new java.awt.Color(255, 0, 0));
-        msgRemove.setText("________________________________________________");
+        removeMsg.setForeground(new java.awt.Color(255, 0, 0));
+        removeMsg.setText("________________________________________________");
 
         removeButton.setText("REMOVE");
         removeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -839,12 +824,12 @@ public class EditJFrame extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(ftePanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fteRemovePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(52, 52, 52))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addComponent(msgRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(removeMsg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(removeButton))
                             .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -879,7 +864,7 @@ public class EditJFrame extends javax.swing.JFrame {
                                             .addComponent(fNRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(lNRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(ptePanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(pteRemovePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(34, 34, 34))))
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -909,13 +894,13 @@ public class EditJFrame extends javax.swing.JFrame {
                             .addComponent(deducRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ftePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fteRemovePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ptePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pteRemovePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removeButton)
-                    .addComponent(msgRemove))
+                    .addComponent(removeMsg))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -931,7 +916,7 @@ public class EditJFrame extends javax.swing.JFrame {
         removeTabLayout.setHorizontalGroup(
             removeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(removeTabLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(removeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(removeTabLayout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -940,19 +925,19 @@ public class EditJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchRemoveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jInternalFrame1))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         removeTabLayout.setVerticalGroup(
             removeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(removeTabLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addGroup(removeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(searchRemoveField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchRemoveButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("REMOVE EMPLOYEE", removeTab);
@@ -965,175 +950,158 @@ public class EditJFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void clearFields(javax.swing.JTextField[] fieldsArray) {
-        for (javax.swing.JTextField field : fieldsArray) {
-            field.setText(null);
-        }
+  
+    private String getDate(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
+        LocalDateTime now = LocalDateTime.now();  
+        return dtf.format(now);  
     }
     
-    private void clearUniqueAddFields() {
-        locField.setSelectedIndex(0);
-        addButtonGroup.clearSelection();
-        ftePanel.setVisible(false);
-        ptePanel.setVisible(false);
-        pfp = defaultPfp;
-        pfpLabel.setIcon(defaultPfp);
+    private ImageIcon uploadPfp(javax.swing.JLabel pfpLabel) {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "jpeg");
+        fileChooser.setFileFilter(filter);
+        
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            //file opened
+            String file = fileChooser.getSelectedFile().getAbsolutePath();
+            Image image = new ImageIcon(file).getImage().getScaledInstance(pfpLabel.getWidth(), pfpLabel.getHeight(), Image.SCALE_DEFAULT);
+            ImageIcon pfp = new ImageIcon(image, file);
+            pfpLabel.setIcon(pfp);
+            return pfp;
+        } else {
+            //file chooser closed
+            return null;
+        }  
     }
     
-    private void clearUniqueEditFields() {
-        locEditField.setSelectedIndex(0);
-        editButtonGroup.clearSelection();
-        pfpEditLabel.setIcon(null);
-    }
-    
-    public boolean missingError(javax.swing.JLabel msg, boolean correctFields) {
-        msg.setText("Missing field. Please try again!");
+    public void missingError(javax.swing.JLabel msg) {
+        msg.setText("Missing field.");
         msg.setVisible(true);
-        correctFields = false;
-        return correctFields;
     }
     
-    private boolean checkEmpInfo(boolean correctFields, boolean editing, javax.swing.JLabel msg, String strEN, String fN, String lN, String g, int locIndex, String strDeduc) {
-        if (strEN.isEmpty()) {
-            correctFields = missingError(msg, correctFields);
-            
+    private boolean checkEmpInfo(boolean editing, javax.swing.JLabel msg, String strEN, String fN, String lN, String g, int locIndex, String strDeduc) {
+        if (strEN.isEmpty() || fN.isEmpty() || lN.isEmpty() || g.isEmpty() || locIndex<0 || strDeduc.isEmpty()) {
+            missingError(msg);
+            return false;
         } else {
             try {
                 int eN = Integer.parseInt(strEN);
                 if (eN < 1) {
-                    msg.setText("Employee number must be a positive integer!");
+                    msg.setText("Employee number must be a positive integer.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 } else if (theHT.searchEmployee(eN) != null && !editing){
-                    msg.setText("Employee number is already in use!");
+                    msg.setText("Employee number is already in use.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 }
             } catch(Exception e) {
-                msg.setText("Employee number must be a positive integer!");
+                msg.setText("Employee number must be a positive integer.");
                 msg.setVisible(true);
-                correctFields = false;
+                return false;
             }
-        }
-        if (fN.isEmpty() || lN.isEmpty() || g.isEmpty() || locIndex<0) {
-            correctFields = missingError(msg, correctFields);
-        }
-        if (strDeduc.isEmpty()){
-            correctFields = missingError(msg, correctFields);
-        } else {
+            
             try {
                 double deduc = Double.parseDouble(strDeduc);
                 if (deduc > 1 || deduc < 0) {
-                    msg.setText("Dedcution rate must be a decimal from 0 - 1!");
+                    msg.setText("Dedcution rate must be a decimal from 0 - 1.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 }             
             } catch (Exception e) {
-                msg.setText("Dedcution rate must be a decimal from 0 - 1!");
+                msg.setText("Dedcution rate must be a decimal from 0 - 1.");
                 msg.setVisible(true);
-                correctFields = false;
+                return false;
             }
+            return true;
         }
-        return correctFields;
     }
     
-    private boolean checkFTE(boolean correctFields, javax.swing.JLabel msg, String strSalary) {
+    private boolean checkFTE(javax.swing.JLabel msg, String strSalary) {
         if (strSalary.isEmpty()){
-            correctFields = missingError(msg, correctFields);
+            missingError(msg);
+            return false;
         } else {
             try {
                 double salary = Double.parseDouble(strSalary);
                 if (salary <= 0) {
-                    msg.setText("Salary must be a positive integer!");
+                    msg.setText("Salary must be a positive integer.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 }
             } catch(Exception e) {
-                msg.setText("Salary must be a positive integer!");
+                msg.setText("Salary must be a positive integer.");
                 msg.setVisible(true);
-                correctFields = false;
+                return false;
             }
+            return true;
         }
-        return correctFields;
     }
     
-    private boolean checkPTE(boolean correctFields, javax.swing.JLabel msg, String strHourly, String strHPW, String strWPY) {
-        if (strHourly.isEmpty()){
-            correctFields = missingError(msg, correctFields);
+    private boolean checkPTE(javax.swing.JLabel msg, String strHourly, String strHPW, String strWPY) {
+        if (strHourly.isEmpty() || strHPW.isEmpty() || strWPY.isEmpty()){
+            missingError(msg);
+            return false;
         } else {
             try {
                 double hourly = Double.parseDouble(strHourly);
                 if (hourly <= 0) {
-                    msg.setText("Hourly wage must be a positive integer!");
+                    msg.setText("Hourly wage must be a positive integer.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 }
             } catch(Exception e) {
-                msg.setText("Hourly wage must be a positive integer!");
+                msg.setText("Hourly wage must be a positive integer.");
                 msg.setVisible(true);
-                correctFields = false;
+                return false;
             }
-        }
-        if (strHPW.isEmpty()){
-            correctFields = missingError(msg, correctFields);
-        } else {
+
             try {
                 double hPW = Double.parseDouble(strHPW);
                 if (hPW < 0 || hPW > 168) {
-                    msg.setText("Hours per week must be between 0 and 168 hours!");
+                    msg.setText("Hours/week must be between 0 and 168 hours.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 }
             } catch(Exception e) {
-                msg.setText("Hours per week must be between 0 and 168 hours!");
+                msg.setText("Hours/week must be between 0 and 168 hours.");
                 msg.setVisible(true);
-                correctFields = false;
+                return false;
             }
-        }
-        if (strWPY.isEmpty()){
-            correctFields = missingError(msg, correctFields);
-        } else {
+
             try {
                 int wPY = Integer.parseInt(strWPY);
                 if (wPY < 0 || wPY > 53) {
-                    msg.setText("Weeks per year must be an integer between 0 and 53!");
+                    msg.setText("Weeks/year must be an integer between 0 and 53.");
                     msg.setVisible(true);
-                    correctFields = false;
+                    return false;
                 }
             } catch(Exception e) {
-                msg.setText("Weeks per year must be an integer between 0 and 53!");
+                msg.setText("Weeks/year must be an integer between 0 and 53.");
                 msg.setVisible(true);
-                correctFields = false;
+                return false;
             }
+            return true;
         }
-        return correctFields;
-    }
-    
-    private String getDate(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
-        LocalDateTime now = LocalDateTime.now();  
-        return dtf.format(now);  
     }
     
     private boolean displayEmployee(boolean editing, javax.swing.JTextField searchDisplay, javax.swing.JLabel msg, javax.swing.JLabel pfpDisplay, javax.swing.JTextField eNDisplay, javax.swing.JTextField fNDisplay, javax.swing.JTextField lNDisplay, javax.swing.JTextField genderDisplay, javax.swing.JTextField deducDisplay, javax.swing.JTextField yearlyDisplay, javax.swing.JTextField hourlyDisplay, javax.swing.JTextField hoursWeekDisplay, javax.swing.JTextField wYrDisplay) {
         String strENToFind = searchDisplay.getText();
         if (strENToFind.isEmpty()) {
-            msg.setText("Input an employee number to search!");
+            msg.setText("Input an employee number to search.");
             msg.setVisible(true);
             return false;
         } else {
             try {
                 int eNToFind = Integer.parseInt(strENToFind);
             } catch(Exception e) {
-                msg.setText("Employee number must be a positive integer!");
+                msg.setText("Employee number must be a positive integer.");
                 msg.setVisible(true);
                 return false;
             }
@@ -1149,9 +1117,8 @@ public class EditJFrame extends javax.swing.JFrame {
             
         } else {
             ImageIcon empPfp = empFound.pfp;
-            String file = empPfp.getDescription();
             Image imageFit = empPfp.getImage().getScaledInstance(pfpDisplay.getWidth(), pfpDisplay.getHeight(), Image.SCALE_DEFAULT);
-            pfpDisplay.setIcon(new ImageIcon(imageFit, file));
+            pfpDisplay.setIcon(new ImageIcon(imageFit, empPfp.getDescription()));
             
             eNDisplay.setText(Integer.toString(empFound.empNumber));
             fNDisplay.setText(empFound.firstName);
@@ -1164,6 +1131,7 @@ public class EditJFrame extends javax.swing.JFrame {
                 locRemoveField.setText(locArray.get(empFound.workLoc));
             }
             deducDisplay.setText(Double.toString(empFound.deductRate));
+            
             if (empFound instanceof FTE fte) {
                 yearlyDisplay.setText(Double.toString(fte.yearlySalary)); 
                 if (editing) {
@@ -1177,82 +1145,120 @@ public class EditJFrame extends javax.swing.JFrame {
                     pteEditButton.setSelected(true);
                 }
             }
-        }
-        return true;
+            return true;
+        } 
     }
     
+    private void clearFields(javax.swing.JTextField[] fieldsArray) {
+        for (javax.swing.JTextField field : fieldsArray) {
+            field.setText(null);
+        }
+    }
+    
+    private void clearUniqueAddFields() {
+        locAddField.setSelectedIndex(0);
+        addButtonGroup.clearSelection();
+        pfpAdd = defaultPfp;
+        pfpAddLabel.setIcon(defaultPfp);
+    }
+    
+    private void clearUniqueEditFields() {
+        locEditField.setSelectedIndex(0);
+        editButtonGroup.clearSelection();
+        pfpEditLabel.setIcon(null);
+    }
+    
+    
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        msg.setForeground(Color.red);
-        javax.swing.JTextField[] addFieldsArray = {empNumField, fNField, lNField, gField, deducField, yearlyField, hourlyField, hoursWeekField, wYrField};
-        String strEN = empNumField.getText(), fN = fNField.getText(), lN = lNField.getText(), g = gField.getText(), strDeduc = deducField.getText();
-        int loc = locField.getSelectedIndex();
+        addMsg.setForeground(Color.red);
+        
+        javax.swing.JTextField[] addFieldsArray = {eNAddField, fNAddField, lNAddField, gAddField, deducAddField, yrlyAddField, hrlyAddField, hrsWAddField, wYrAddField};
+        
+        String strEN = eNAddField.getText(), fN = fNAddField.getText(), lN = lNAddField.getText(), g = gAddField.getText(), strDeduc = deducAddField.getText();
+        int loc = locAddField.getSelectedIndex();
+        String date = getDate();
 
-        boolean correctFields = checkEmpInfo(true, false, msg, strEN, fN, lN, g, loc, strDeduc);
+        //checks regular fields
+        boolean correctEmpFields = checkEmpInfo(false, addMsg, strEN, fN, lN, g, loc, strDeduc);
         
-        if (fteButton.isSelected()) {  
-            String strSalary = yearlyField.getText();
-            
-            correctFields = checkFTE(correctFields, msg, strSalary);
-            
-            if (correctFields) {
-                int eN = Integer.parseInt(strEN);
-                double deduc = Double.parseDouble(strDeduc), salary = Double.parseDouble(strSalary);
-                String date = getDate();
-                
-                FTE theFTE = new FTE(date, pfp, eN, fN, lN, g, loc, deduc, salary);
-                theHT.addEmployee(theFTE);
-                mainFrame.updateTable();
-                
-                msg.setForeground(new Color(102, 153, 0));
-                msg.setText("Full time employee added!");
-                msg.setVisible(true);
-                
-                clearFields(addFieldsArray);
-                clearUniqueAddFields();
+        if (correctEmpFields) {
+            if (fteAddButton.isSelected()) {  
+                String strSalary = yrlyAddField.getText();
+
+                //checks fte specific fields
+                boolean correctFTEFields = checkFTE(addMsg, strSalary);
+
+                if (correctFTEFields) {
+                    int eN = Integer.parseInt(strEN);
+                    double deduc = Double.parseDouble(strDeduc), salary = Double.parseDouble(strSalary);
+
+                    FTE theFTE = new FTE(date, pfpAdd, eN, fN, lN, g, loc, deduc, salary);
+                    theHT.addEmployee(theFTE);
+                    mainFrame.updateTable();
+
+                    addMsg.setForeground(new Color(102, 153, 0));
+                    addMsg.setText("Full time employee added!");
+                    addMsg.setVisible(true);
+
+                    clearFields(addFieldsArray);
+                    clearUniqueAddFields();
+                    yrlyAddField.setEditable(false);
+                }
+
+            } else if (pteAddButton.isSelected()) {
+                String strHourly = hrlyAddField.getText(), strHPW = hrsWAddField.getText(), strWPY = wYrAddField.getText();
+
+                //checks pte specific fields
+                boolean correctPTEFields = checkPTE(addMsg, strHourly, strHPW, strWPY);
+
+                if (correctPTEFields) {
+                    int eN = Integer.parseInt(strEN), wPY = Integer.parseInt(strWPY);
+                    double deduc = Double.parseDouble(strDeduc), hourly = Double.parseDouble(strHourly), hPW = Double.parseDouble(strHPW);
+
+                    PTE thePTE = new PTE(date, pfpAdd, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
+                    theHT.addEmployee(thePTE);
+                    mainFrame.updateTable();
+
+                    addMsg.setForeground(new Color(102, 153, 0));
+                    addMsg.setText("Part time employee added!");
+                    addMsg.setVisible(true);
+
+                    clearFields(addFieldsArray);
+                    clearUniqueAddFields();
+                    hrlyAddField.setEditable(false);
+                    hrsWAddField.setEditable(false);
+                    wYrAddField.setEditable(false);
+                }            
+            } else {
+                missingError(addMsg);
             }
-            
-        } else if (pteButton.isSelected()) {
-            String strHourly = hourlyField.getText(), strHPW = hoursWeekField.getText(), strWPY = wYrField.getText();
-        
-            correctFields = checkPTE(correctFields, msg, strHourly, strHPW, strWPY);
-        
-            if (correctFields) {
-                int eN = Integer.parseInt(strEN), wPY = Integer.parseInt(strWPY);
-                double deduc = Double.parseDouble(strDeduc), hourly = Double.parseDouble(strHourly), hPW = Double.parseDouble(strHPW);
-                String date = getDate();
-                
-                PTE thePTE = new PTE(date, pfp, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
-                theHT.addEmployee(thePTE);
-                mainFrame.updateTable();
-                
-                msg.setForeground(new Color(102, 153, 0));
-                msg.setText("Part time employee added!");
-                msg.setVisible(true);
-                clearFields(addFieldsArray);
-                clearUniqueAddFields();
-            }            
-        
-        } else {
-            missingError(msg, correctFields);
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void fteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fteButtonActionPerformed
-        if (fteButton.isSelected()) {
-            ftePanel.setVisible(true);
-            ptePanel.setVisible(false);
+    private void fteAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fteAddButtonActionPerformed
+        if (fteAddButton.isSelected()) {
+            yrlyAddField.setEditable(true);
+            hrlyAddField.setEditable(false);
+            hrsWAddField.setEditable(false);
+            wYrAddField.setEditable(false);
+            hrlyAddField.setText(null);
+            hrsWAddField.setText(null);
+            wYrAddField.setText(null);
         }
-    }//GEN-LAST:event_fteButtonActionPerformed
+    }//GEN-LAST:event_fteAddButtonActionPerformed
 
-    private void pteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pteButtonActionPerformed
-        if (pteButton.isSelected()) {
-            ptePanel.setVisible(true);
-            ftePanel.setVisible(false);
+    private void pteAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pteAddButtonActionPerformed
+        if (pteAddButton.isSelected()) {
+            yrlyAddField.setEditable(false);
+            yrlyAddField.setText(null);
+            hrlyAddField.setEditable(true);
+            hrsWAddField.setEditable(true);
+            wYrAddField.setEditable(true);
         }
-    }//GEN-LAST:event_pteButtonActionPerformed
+    }//GEN-LAST:event_pteAddButtonActionPerformed
 
     private void addTabMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTabMousePressed
-        msg.setVisible(false);
+        addMsg.setVisible(false);
     }//GEN-LAST:event_addTabMousePressed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
@@ -1260,119 +1266,125 @@ public class EditJFrame extends javax.swing.JFrame {
         theHT.removeEmployee(eNToRemove);
         mainFrame.updateTable();
         
-        msgRemove.setText("Employee " + eNToRemove + " removed!");
-        msgRemove.setForeground(new Color(102, 153, 0)); 
-        msgRemove.setVisible(true);
+        removeMsg.setText("Employee " + eNToRemove + " removed!");
+        removeMsg.setForeground(new Color(102, 153, 0)); 
+        removeMsg.setVisible(true);
         
-        javax.swing.JTextField[] removeFieldsArray = {searchRemoveField, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, locRemoveField, deducRemoveField, yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField};
+        javax.swing.JTextField[] removeFieldsArray = {searchRemoveField, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, locRemoveField, deducRemoveField, yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField};
         clearFields(removeFieldsArray);
         pfpRemoveLabel.setIcon(null);
         removeButton.setEnabled(false);
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void searchRemoveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRemoveButtonActionPerformed
-        msgRemove.setVisible(false);
-        msgRemove.setForeground(Color.red);
+        removeMsg.setVisible(false);
+        removeMsg.setForeground(Color.red);
         
-        javax.swing.JTextField[] uncertainFields = {yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField};
+        //regular fields will always be overrided by new data, but fte or pte fields may be empty and need to be cleared
+        javax.swing.JTextField[] uncertainFields = {yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField};
         clearFields(uncertainFields);
         
-        boolean employeeDisplayed = displayEmployee(false, searchRemoveField, msgRemove, pfpRemoveLabel, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, deducRemoveField, yearlyRemoveField, hourlyRemoveField, hoursWeekRemoveField, wYrRemoveField);
+        boolean employeeDisplayed = displayEmployee(false, searchRemoveField, removeMsg, pfpRemoveLabel, eNRemoveField, fNRemoveField, lNRemoveField, gRemoveField, deducRemoveField, yrlyRemoveField, hrlyRemoveField, hrsWRemoveField, wYrRemoveField);
         if (employeeDisplayed) {
             removeButton.setEnabled(true);
         }
     }//GEN-LAST:event_searchRemoveButtonActionPerformed
 
     private void searchRemoveFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchRemoveFieldFocusGained
-        msgRemove.setVisible(false);
-        msgRemove.setForeground(Color.red);
+        removeMsg.setVisible(false);
+        removeMsg.setForeground(Color.red);
     }//GEN-LAST:event_searchRemoveFieldFocusGained
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        javax.swing.JTextField[] editFieldsArray = {eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yearlyEditField, hourlyEditField, hoursWeekEditField, wYrEditField};
-        int eNToEdit = Integer.parseInt(eNEditField.getText());
+        javax.swing.JTextField[] editFieldsArray = {eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yrlyEditField, hrlyEditField, hrsWEditField, wYrEditField};
         
+        int eNToEdit = Integer.parseInt(eNEditField.getText());
         EmployeeInfo empToEdit = theHT.searchEmployee(eNToEdit);
+        
+        //preserves original date
         String empDate = empToEdit.date;
         
         String strEN = eNEditField.getText(), fN = fNEditField.getText(), lN = lNEditField.getText(), g = gEditField.getText(), strDeduc = deducEditField.getText();
         int loc = locEditField.getSelectedIndex();
         
-        boolean correctFields = checkEmpInfo(true, true, msgEdit, strEN, fN, lN, g, loc, strDeduc);
+        //checks regular fields
+        boolean correctEmpFields = checkEmpInfo(true, editMsg, strEN, fN, lN, g, loc, strDeduc);
         
-        if (fteEditButton.isSelected()) {  
-            String strSalary = yearlyEditField.getText();
-            
-            correctFields = checkFTE(correctFields, msgEdit, strSalary);
-            
-            if (correctFields) {
-                int eN = Integer.parseInt(strEN);
-                double deduc = Double.parseDouble(strDeduc), salary = Double.parseDouble(strSalary);
-                
-                theHT.removeEmployee(eNToEdit);
-                FTE theFTE = new FTE(empDate, pfpEdit, eN, fN, lN, g, loc, deduc, salary);
-                theHT.addEmployee(theFTE);
-                mainFrame.updateTable();
-                
-                msgEdit.setText("Employee edited!");
-                msgEdit.setForeground(new Color(102, 153, 0)); 
-                msgEdit.setVisible(true);
-                
-                clearFields(editFieldsArray);
-                clearUniqueEditFields();
-                                
-                editButton.setEnabled(false);
-                uploadEditButton.setEnabled(false);
-                for (javax.swing.JTextField field : editFieldsArray) {
-                    field.setEditable(false);
+        if (correctEmpFields) {
+            if (fteEditButton.isSelected()) {  
+                String strSalary = yrlyEditField.getText();
+
+                //checks fte specific fields
+                boolean correctFTEFields = checkFTE(editMsg, strSalary);
+
+                if (correctFTEFields) {
+                    double deduc = Double.parseDouble(strDeduc), salary = Double.parseDouble(strSalary);
+
+                    theHT.removeEmployee(eNToEdit);
+                    FTE theFTE = new FTE(empDate, pfpEdit, eNToEdit, fN, lN, g, loc, deduc, salary);
+                    theHT.addEmployee(theFTE);
+                    mainFrame.updateTable();
+
+                    editMsg.setText("Employee " + eNToEdit + " edited!");
+                    editMsg.setForeground(new Color(102, 153, 0)); 
+                    editMsg.setVisible(true);
+
+                    clearFields(editFieldsArray);
+                    clearUniqueEditFields();
+
+                    editButton.setEnabled(false);
+                    uploadEditButton.setEnabled(false);
+                    for (javax.swing.JTextField field : editFieldsArray) {
+                        field.setEditable(false);
+                    }
+                    locEditField.setEnabled(false);
+                    fteEditButton.setEnabled(false);
+                    pteEditButton.setEnabled(false);
                 }
-                locEditField.setEnabled(false);
-                fteEditButton.setEnabled(false);
-                pteEditButton.setEnabled(false);
+
+            } else if (pteEditButton.isSelected()) {
+                String strHourly = hrlyEditField.getText(), strHPW = hrsWEditField.getText(), strWPY = wYrEditField.getText();
+
+                //checks pte specific fields
+                boolean correctPTEFields = checkPTE(editMsg, strHourly, strHPW, strWPY);
+
+                if (correctPTEFields) {
+                    int wPY = Integer.parseInt(strWPY);
+                    double deduc = Double.parseDouble(strDeduc), hourly = Double.parseDouble(strHourly), hPW = Double.parseDouble(strHPW);
+
+                    theHT.removeEmployee(eNToEdit);
+                    PTE thePTE = new PTE(empDate, pfpEdit, eNToEdit, fN, lN, g, loc, deduc, hourly, hPW, wPY);
+                    theHT.addEmployee(thePTE);
+                    mainFrame.updateTable();
+
+                    editMsg.setText("Employee " + eNToEdit + " edited!");
+                    editMsg.setForeground(new Color(102, 153, 0)); 
+                    editMsg.setVisible(true);
+
+                    clearFields(editFieldsArray);
+                    clearUniqueEditFields();
+
+                    editButton.setEnabled(false);
+                    uploadEditButton.setEnabled(false);
+                    for (javax.swing.JTextField field : editFieldsArray) {
+                        field.setEditable(false);
+                    }
+                    locEditField.setEnabled(false);
+                    fteEditButton.setEnabled(false);
+                    pteEditButton.setEnabled(false);
+                }            
+
+            } else {
+                missingError(editMsg);
             }
-            
-        } else if (pteEditButton.isSelected()) {
-            String strHourly = hourlyEditField.getText(), strHPW = hoursWeekEditField.getText(), strWPY = wYrEditField.getText();
-        
-            correctFields = checkPTE(correctFields, msgEdit, strHourly, strHPW, strWPY);
-        
-            if (correctFields) {
-                int eN = Integer.parseInt(strEN), wPY = Integer.parseInt(strWPY);
-                double deduc = Double.parseDouble(strDeduc), hourly = Double.parseDouble(strHourly), hPW = Double.parseDouble(strHPW);
-                
-                theHT.removeEmployee(eNToEdit);
-                PTE thePTE = new PTE(empDate, pfpEdit, eN, fN, lN, g, loc, deduc, hourly, hPW, wPY);
-                theHT.addEmployee(thePTE);
-                mainFrame.updateTable();
-                
-                msgEdit.setText("Employee edited!");
-                msgEdit.setForeground(new Color(102, 153, 0)); 
-                msgEdit.setVisible(true);
-                
-                clearFields(editFieldsArray);
-                clearUniqueEditFields();
-                                
-                editButton.setEnabled(false);
-                uploadEditButton.setEnabled(false);
-                for (javax.swing.JTextField field : editFieldsArray) {
-                    field.setEditable(false);
-                }
-                locEditField.setEnabled(false);
-                fteEditButton.setEnabled(false);
-                pteEditButton.setEnabled(false);
-            }            
-        
-        } else {
-            missingError(msgEdit, correctFields);
         }
-        
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void searchEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEditButtonActionPerformed
-        msgEdit.setVisible(false);
-        msgEdit.setForeground(Color.red);
+        editMsg.setVisible(false);
+        editMsg.setForeground(Color.red);
         
-        boolean employeeDisplayed = displayEmployee(true, searchEditField, msgEdit, pfpEditLabel, eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yearlyEditField, hourlyEditField, hoursWeekEditField, wYrEditField);
+        boolean employeeDisplayed = displayEmployee(true, searchEditField, editMsg, pfpEditLabel, eNEditField, fNEditField, lNEditField, gEditField, deducEditField, yrlyEditField, hrlyEditField, hrsWEditField, wYrEditField);
         if (employeeDisplayed) {
             editButton.setEnabled(true);
             uploadEditButton.setEnabled(true);
@@ -1387,58 +1399,45 @@ public class EditJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_searchEditButtonActionPerformed
 
     private void searchEditFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchEditFieldFocusGained
-        msgEdit.setVisible(false);
-        msgEdit.setForeground(Color.red);
+        editMsg.setVisible(false);
+        editMsg.setForeground(Color.red);
     }//GEN-LAST:event_searchEditFieldFocusGained
-
-    private void fteEditButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_fteEditButtonStateChanged
-        if (fteEditButton.isSelected()) {
-            yearlyEditField.setEditable(true);
-            hourlyEditField.setEditable(false);
-            hoursWeekEditField.setEditable(false);
-            wYrEditField.setEditable(false);
-            hourlyEditField.setText(null);
-            hoursWeekEditField.setText(null);
-            wYrEditField.setText(null);
-        }
-    }//GEN-LAST:event_fteEditButtonStateChanged
 
     private void pteEditButtonStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_pteEditButtonStateChanged
         if (pteEditButton.isSelected()) {
-            yearlyEditField.setEditable(false);
-            yearlyEditField.setText(null);
-            hourlyEditField.setEditable(true);
-            hoursWeekEditField.setEditable(true);
+            yrlyEditField.setEditable(false);
+            yrlyEditField.setText(null);
+            hrlyEditField.setEditable(true);
+            hrsWEditField.setEditable(true);
             wYrEditField.setEditable(true);
         }
     }//GEN-LAST:event_pteEditButtonStateChanged
 
-    private void uploadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadButtonActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "jpeg");
-        fileChooser.setFileFilter(filter);
-        int selected = fileChooser.showOpenDialog(this);
-        if (selected == JFileChooser.APPROVE_OPTION) {
-            String file = fileChooser.getSelectedFile().getAbsolutePath();
-            Image image = new ImageIcon(file).getImage().getScaledInstance(pfpLabel.getWidth(), pfpLabel.getHeight(), Image.SCALE_DEFAULT);
-            pfp = new ImageIcon(image, file);
-            pfpLabel.setIcon(pfp);
-            System.out.println(file);
+    private void uploadAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadAddButtonActionPerformed
+        ImageIcon pfpVar = uploadPfp(pfpAddLabel);
+        if (pfpVar != null) {
+            pfpAdd = pfpVar;
         }
-    }//GEN-LAST:event_uploadButtonActionPerformed
+    }//GEN-LAST:event_uploadAddButtonActionPerformed
 
     private void uploadEditButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadEditButtonActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "jpeg");
-        fileChooser.setFileFilter(filter);
-        int selected = fileChooser.showOpenDialog(this);
-        if (selected == JFileChooser.APPROVE_OPTION) {
-            String file = fileChooser.getSelectedFile().getAbsolutePath();
-            Image image = new ImageIcon(file).getImage().getScaledInstance(pfpEditLabel.getWidth(), pfpEditLabel.getHeight(), Image.SCALE_DEFAULT);
-            pfpEdit = new ImageIcon(image, file);
-            pfpEditLabel.setIcon(pfpEdit);
+        ImageIcon pfpVar = uploadPfp(pfpEditLabel);
+        if (pfpVar != null) {
+            pfpEdit = pfpVar;
         }
     }//GEN-LAST:event_uploadEditButtonActionPerformed
+
+    private void fteEditButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_fteEditButtonItemStateChanged
+        if (fteEditButton.isSelected()) {
+            yrlyEditField.setEditable(true);
+            hrlyEditField.setEditable(false);
+            hrsWEditField.setEditable(false);
+            wYrEditField.setEditable(false);
+            hrlyEditField.setText(null);
+            hrsWEditField.setText(null);
+            wYrEditField.setText(null);
+        }
+    }//GEN-LAST:event_fteEditButtonItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1479,41 +1478,42 @@ public class EditJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.ButtonGroup addButtonGroup;
+    private javax.swing.JLabel addMsg;
     private javax.swing.JPanel addTab;
+    private javax.swing.JTextField deducAddField;
     private javax.swing.JTextField deducEditField;
-    private javax.swing.JTextField deducField;
     private javax.swing.JTextField deducRemoveField;
     private javax.swing.JLabel deducText;
+    private javax.swing.JTextField eNAddField;
     private javax.swing.JTextField eNEditField;
     private javax.swing.JTextField eNRemoveField;
     private javax.swing.JButton editButton;
     private javax.swing.ButtonGroup editButtonGroup;
+    private javax.swing.JLabel editMsg;
     private javax.swing.JPanel editTab;
-    private javax.swing.JTextField empNumField;
     private javax.swing.JLabel empNumText;
+    private javax.swing.JTextField fNAddField;
     private javax.swing.JTextField fNEditField;
-    private javax.swing.JTextField fNField;
     private javax.swing.JTextField fNRemoveField;
     private javax.swing.JLabel fNText;
-    private javax.swing.JLabel fteArrow;
-    private javax.swing.JRadioButton fteButton;
+    private javax.swing.JRadioButton fteAddButton;
+    private javax.swing.JPanel fteAddPanel;
     private javax.swing.JRadioButton fteEditButton;
-    private javax.swing.JPanel ftePanel;
-    private javax.swing.JPanel ftePanel1;
-    private javax.swing.JPanel ftePanel2;
+    private javax.swing.JPanel fteEditPanel;
+    private javax.swing.JPanel fteRemovePanel;
+    private javax.swing.JTextField gAddField;
     private javax.swing.JTextField gEditField;
-    private javax.swing.JTextField gField;
     private javax.swing.JTextField gRemoveField;
     private javax.swing.JLabel gText;
-    private javax.swing.JTextField hourlyEditField;
-    private javax.swing.JTextField hourlyField;
-    private javax.swing.JTextField hourlyRemoveField;
     private javax.swing.JLabel hourlyText;
     private javax.swing.JLabel hourlyText1;
     private javax.swing.JLabel hourlyText2;
-    private javax.swing.JTextField hoursWeekEditField;
-    private javax.swing.JTextField hoursWeekField;
-    private javax.swing.JTextField hoursWeekRemoveField;
+    private javax.swing.JTextField hrlyAddField;
+    private javax.swing.JTextField hrlyEditField;
+    private javax.swing.JTextField hrlyRemoveField;
+    private javax.swing.JTextField hrsWAddField;
+    private javax.swing.JTextField hrsWEditField;
+    private javax.swing.JTextField hrsWRemoveField;
     private javax.swing.JLabel hrsWeekText;
     private javax.swing.JLabel hrsWeekText1;
     private javax.swing.JLabel hrsWeekText2;
@@ -1536,46 +1536,43 @@ public class EditJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField lNAddField;
     private javax.swing.JTextField lNEditField;
-    private javax.swing.JTextField lNField;
     private javax.swing.JTextField lNRemoveField;
     private javax.swing.JLabel lNText;
+    private javax.swing.JComboBox<String> locAddField;
     private javax.swing.JComboBox<String> locEditField;
-    private javax.swing.JComboBox<String> locField;
     private javax.swing.JTextField locRemoveField;
     private javax.swing.JLabel locText;
-    private javax.swing.JLabel msg;
-    private javax.swing.JLabel msgEdit;
-    private javax.swing.JLabel msgRemove;
+    private javax.swing.JLabel pfpAddLabel;
     private javax.swing.JLabel pfpEditLabel;
-    private javax.swing.JLabel pfpLabel;
     private javax.swing.JLabel pfpRemoveLabel;
     private javax.swing.JLabel pfpText;
-    private javax.swing.JLabel pteArrow;
-    private javax.swing.JRadioButton pteButton;
+    private javax.swing.JRadioButton pteAddButton;
+    private javax.swing.JPanel pteAddPanel;
     private javax.swing.JRadioButton pteEditButton;
-    private javax.swing.JPanel ptePanel;
-    private javax.swing.JPanel ptePanel1;
-    private javax.swing.JPanel ptePanel2;
+    private javax.swing.JPanel pteEditPanel;
+    private javax.swing.JPanel pteRemovePanel;
     private javax.swing.JButton removeButton;
+    private javax.swing.JLabel removeMsg;
     private javax.swing.JPanel removeTab;
     private javax.swing.JButton searchEditButton;
     private javax.swing.JTextField searchEditField;
     private javax.swing.JButton searchRemoveButton;
     private javax.swing.JTextField searchRemoveField;
-    private javax.swing.JButton uploadButton;
+    private javax.swing.JButton uploadAddButton;
     private javax.swing.JButton uploadEditButton;
+    private javax.swing.JTextField wYrAddField;
     private javax.swing.JTextField wYrEditField;
-    private javax.swing.JTextField wYrField;
     private javax.swing.JTextField wYrRemoveField;
     private javax.swing.JLabel wYrText;
     private javax.swing.JLabel wYrText1;
     private javax.swing.JLabel wYrText2;
-    private javax.swing.JTextField yearlyEditField;
-    private javax.swing.JTextField yearlyField;
-    private javax.swing.JTextField yearlyRemoveField;
     private javax.swing.JLabel yearlyText;
     private javax.swing.JLabel yearlyText1;
     private javax.swing.JLabel yearlyText2;
+    private javax.swing.JTextField yrlyAddField;
+    private javax.swing.JTextField yrlyEditField;
+    private javax.swing.JTextField yrlyRemoveField;
     // End of variables declaration//GEN-END:variables
 }

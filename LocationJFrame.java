@@ -1,8 +1,4 @@
 
-import javax.swing.ListSelectionModel;
-import javax.swing.DefaultListModel;
-import java.util.ArrayList;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -12,10 +8,16 @@ import java.util.ArrayList;
  *
  * @author jenna
  */
+
+import javax.swing.ListSelectionModel;
+import javax.swing.DefaultListModel;
+import java.util.ArrayList;
+
 public class LocationJFrame extends javax.swing.JFrame {
-    private MainJFrame mainFrame;
     
+    private MainJFrame mainFrame;
     private ArrayList<String> locArray;
+    final DefaultListModel listModel;
     
     /**
      * Creates new form LocationJFrame 
@@ -26,16 +28,19 @@ public class LocationJFrame extends javax.swing.JFrame {
         
         locMsg.setVisible(false);
         
+        listModel = new DefaultListModel();
         locList.setModel(listModel);
         locList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
         pack();        
     }
     
+    //allows LocationJFrame to use MainJFrame's updateTable method
     public void passMainFrame(MainJFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 
+    //gets the array of locations from MainJFrame
     public void setLocArray(ArrayList<String> locArrayRef) {
         locArray = locArrayRef;
         
@@ -58,10 +63,10 @@ public class LocationJFrame extends javax.swing.JFrame {
         addLocButton = new javax.swing.JButton();
         removeLocButton = new javax.swing.JButton();
         addLocField = new javax.swing.JTextField();
-        saveButton = new javax.swing.JButton();
+        saveLocButton = new javax.swing.JButton();
         locMsg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -85,10 +90,10 @@ public class LocationJFrame extends javax.swing.JFrame {
             }
         });
 
-        saveButton.setText("SAVE");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
+        saveLocButton.setText("SAVE");
+        saveLocButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+                saveLocButtonActionPerformed(evt);
             }
         });
 
@@ -111,7 +116,7 @@ public class LocationJFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(locMsg, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(saveLocButton, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -127,16 +132,14 @@ public class LocationJFrame extends javax.swing.JFrame {
                 .addComponent(removeLocButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveButton)
+                    .addComponent(saveLocButton)
                     .addComponent(locMsg))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    DefaultListModel listModel = new DefaultListModel();
-    
+        
     private void addLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLocButtonActionPerformed
         if (!listModel.contains(addLocField.getText())) {
             listModel.addElement(addLocField.getText());
@@ -152,14 +155,15 @@ public class LocationJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_removeLocButtonActionPerformed
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    private void saveLocButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveLocButtonActionPerformed
+        //updates the array of locations
         locArray.clear();
         for (int i = 0; i < listModel.getSize(); i++) {
              locArray.add(String.valueOf(listModel.getElementAt(i)));
         }
         locMsg.setVisible(true);
         mainFrame.updateTable();
-    }//GEN-LAST:event_saveButtonActionPerformed
+    }//GEN-LAST:event_saveLocButtonActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         locMsg.setVisible(false);
@@ -207,6 +211,6 @@ public class LocationJFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> locList;
     private javax.swing.JLabel locMsg;
     private javax.swing.JButton removeLocButton;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JButton saveLocButton;
     // End of variables declaration//GEN-END:variables
 }

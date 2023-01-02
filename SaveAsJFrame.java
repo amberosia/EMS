@@ -1,7 +1,4 @@
 
-import java.io.File;
-import java.io.IOException;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -11,7 +8,12 @@ import java.io.IOException;
  *
  * @author jenna
  */
+
+import java.io.File;
+import java.io.IOException;
+
 public class SaveAsJFrame extends javax.swing.JFrame {
+    
     private MainJFrame mainFrame;
 
     /**
@@ -19,11 +21,13 @@ public class SaveAsJFrame extends javax.swing.JFrame {
      */
     public SaveAsJFrame() {
         initComponents();
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        
+                
         existsMsg.setVisible(false);
+        
+        pack(); 
     }
 
+    //allows SaveAsJFrame to use MainJFrame's saveToFile method
     public void passMainFrame(MainJFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
@@ -41,12 +45,13 @@ public class SaveAsJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         fileNameField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        saveAsButton = new javax.swing.JButton();
+        createSaveButton = new javax.swing.JButton();
         existsMsg = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 formMousePressed(evt);
@@ -57,15 +62,15 @@ public class SaveAsJFrame extends javax.swing.JFrame {
 
         jLabel3.setText(".txt");
 
-        saveAsButton.setText("SAVE");
-        saveAsButton.addActionListener(new java.awt.event.ActionListener() {
+        createSaveButton.setText("SAVE");
+        createSaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveAsButtonActionPerformed(evt);
+                createSaveButtonActionPerformed(evt);
             }
         });
 
         existsMsg.setForeground(new java.awt.Color(255, 0, 0));
-        existsMsg.setText("File already exists!");
+        existsMsg.setText("File already exists.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -77,7 +82,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(existsMsg)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(saveAsButton))
+                        .addComponent(createSaveButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -96,7 +101,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveAsButton)
+                    .addComponent(createSaveButton)
                     .addComponent(existsMsg))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -104,7 +109,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsButtonActionPerformed
+    private void createSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createSaveButtonActionPerformed
         File parentDir = new File("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\save_files");
         parentDir.mkdir();
         
@@ -122,7 +127,7 @@ public class SaveAsJFrame extends javax.swing.JFrame {
         } else {
             existsMsg.setVisible(true);
         }
-    }//GEN-LAST:event_saveAsButtonActionPerformed
+    }//GEN-LAST:event_createSaveButtonActionPerformed
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         existsMsg.setVisible(false);
@@ -164,11 +169,11 @@ public class SaveAsJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createSaveButton;
     private javax.swing.JLabel existsMsg;
     private javax.swing.JTextField fileNameField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton saveAsButton;
     // End of variables declaration//GEN-END:variables
 }

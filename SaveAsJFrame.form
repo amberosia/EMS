@@ -9,7 +9,8 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -39,7 +40,7 @@
                   <Group type="102" attributes="0">
                       <Component id="existsMsg" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="saveAsButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="createSaveButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -64,7 +65,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="saveAsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="createSaveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="existsMsg" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="12" max="32767" attributes="0"/>
@@ -85,12 +86,12 @@
         <Property name="text" type="java.lang.String" value=".txt"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="saveAsButton">
+    <Component class="javax.swing.JButton" name="createSaveButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="SAVE"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveAsButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createSaveButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="existsMsg">
@@ -98,7 +99,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="File already exists!"/>
+        <Property name="text" type="java.lang.String" value="File already exists."/>
       </Properties>
     </Component>
   </SubComponents>

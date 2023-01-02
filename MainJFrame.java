@@ -1,22 +1,4 @@
 
-import java.util.*;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.JLabel;
-import java.awt.Component;
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.BufferedReader;
-import java.io.IOException;
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -26,6 +8,25 @@ import java.io.IOException;
  *
  * @author jenna
  */
+
+import java.util.*;
+import java.awt.Component;
+import javax.swing.JTable;
+import javax.swing.JLabel;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class MainJFrame extends javax.swing.JFrame {
     
@@ -42,18 +43,11 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MainJFrame.MAXIMIZED_BOTH); 
         
-        saveMsg.setVisible(false);
-        
         theHT = new MyHashTable(10);
-        
-        totalText.setText("Total Employees: " + theHT.getNumInHashTable());
-        fileName = "No File";
-        fileText.setText("Loaded: " + fileName);
-        
         locArray = new ArrayList<>();
-        //locArray.add("Mississauga");
-        //locArray.add("Toronto");
-             
+
+        saveMsg.setVisible(false); 
+        fileErrorMsg.setVisible(false);
     }
     
     /**
@@ -66,7 +60,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        editButton = new javax.swing.JButton();
+        editEmpsButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         fteTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -83,6 +77,7 @@ public class MainJFrame extends javax.swing.JFrame {
         saveAsButton = new javax.swing.JButton();
         fileText = new javax.swing.JLabel();
         saveMsg = new javax.swing.JLabel();
+        fileErrorMsg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,10 +89,10 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        editButton.setText("EDIT EMPLOYEES");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
+        editEmpsButton.setText("EDIT EMPLOYEES");
+        editEmpsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
+                editEmpsButtonActionPerformed(evt);
             }
         });
 
@@ -148,7 +143,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        totalText.setText("Total Employees: ");
+        totalText.setText("Total Employees: 0");
 
         fteText.setText("Full Time Employees");
 
@@ -161,7 +156,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Bahnschrift", 0, 24)); // NOI18N
         jLabel1.setText("EMPLOYEE MANAGEMENT SYSTEM");
 
         locButton.setText("LOCATIONS");
@@ -185,10 +180,13 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
-        fileText.setText("Loaded: ");
+        fileText.setText("No File");
 
         saveMsg.setForeground(new java.awt.Color(102, 153, 0));
         saveMsg.setText("Saved!");
+
+        fileErrorMsg.setForeground(new java.awt.Color(255, 0, 0));
+        fileErrorMsg.setText("Invalid file data. Loaded data may be incomplete or incorrect.");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -199,7 +197,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 818, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator2)
                             .addGroup(backgroundLayout.createSequentialGroup()
@@ -210,20 +208,22 @@ public class MainJFrame extends javax.swing.JFrame {
                                     .addGroup(backgroundLayout.createSequentialGroup()
                                         .addComponent(loadButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fileText, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(fileText, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(backgroundLayout.createSequentialGroup()
-                                        .addComponent(totalText)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(totalText)
+                                            .addComponent(fileErrorMsg))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE)
                                         .addComponent(refreshButton)
                                         .addGap(5, 5, 5)))
                                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
                                         .addComponent(locButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(editButton))
+                                        .addComponent(editEmpsButton))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
                                         .addComponent(saveMsg)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,37 +239,41 @@ public class MainJFrame extends javax.swing.JFrame {
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(fileText)
-                        .addComponent(loadButton))
-                    .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(saveButton)
-                        .addComponent(saveAsButton)
-                        .addComponent(saveMsg))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
                 .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel1))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(editButton)
-                            .addComponent(refreshButton)
-                            .addComponent(locButton)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(saveButton)
+                            .addComponent(saveAsButton)
+                            .addComponent(saveMsg)))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(loadButton)
+                            .addComponent(fileText))))
+                .addGap(6, 6, 6)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(editEmpsButton)
+                        .addComponent(refreshButton)
+                        .addComponent(locButton))
+                    .addGroup(backgroundLayout.createSequentialGroup()
+                        .addComponent(fileErrorMsg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(totalText)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fteText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pteText)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
 
@@ -277,7 +281,7 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,6 +291,7 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    
+    //renderer that allows table cell to display an ImageIcon
     static class ImageRenderer extends DefaultTableCellRenderer {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -298,10 +303,10 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }
 
+    //displays hashtable data to fteTable and pteTable
     public void updateTable() {
         totalText.setText("Total Employees: " + theHT.getNumInHashTable());
-        
-        fileText.setText("Loaded: " + fileName);
+        fileText.setText(fileName);
         
         DefaultTableModel fteModel = (DefaultTableModel) fteTable.getModel();
         fteTable.setModel(fteModel);
@@ -317,23 +322,23 @@ public class MainJFrame extends javax.swing.JFrame {
             for (int j = 0; j < theHT.buckets[i].size(); j++) {
                 ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
                 EmployeeInfo empToDisplay = theBucket.get(j);
+                
+                Image empImage = empToDisplay.pfp.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
+                ImageIcon empPfp = new ImageIcon(empImage);
+                    
                 if (empToDisplay instanceof FTE fte) {
-                    Image fteImage = fte.pfp.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
-                    ImageIcon ftePfp = new ImageIcon(fteImage);
-                    
-                    Object[] row = { fte.date, ftePfp, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), locArray.get(fte.workLoc)};
+                    Object[] row = { fte.date, empPfp, fte.empNumber, fte.firstName, fte.lastName, fte.gender, fte.yearlySalary, fte.deductRate, fte.calcNetIncome(), locArray.get(fte.workLoc)};
                     fteModel.addRow(row);
-                } else if (empToDisplay instanceof PTE pte) {
-                    Image pteImage = pte.pfp.getImage().getScaledInstance(fteTable.getRowHeight(), fteTable.getRowHeight(), Image.SCALE_DEFAULT);
-                    ImageIcon ptePfp = new ImageIcon(pteImage);
                     
-                    Object[] row = { pte.date, ptePfp, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), locArray.get(pte.workLoc)};
+                } else if (empToDisplay instanceof PTE pte) {
+                    Object[] row = { pte.date, empPfp, pte.empNumber, pte.firstName, pte.lastName, pte.gender, pte.hourlyWage, pte.hoursPerWeek, pte.weeksPerYear, pte.deductRate, pte.calcNetIncome(), locArray.get(pte.workLoc)};
                     pteModel.addRow(row);
                 }
             }
         }
     }
     
+    //saves hashtable data to fileToSaveTo
     public void saveToFile(File fileToSaveTo) {
         BufferedWriter output = null;
         String outputString = "";
@@ -342,11 +347,13 @@ public class MainJFrame extends javax.swing.JFrame {
             FileWriter saveFile = new FileWriter(fileToSaveTo);
             output = new BufferedWriter(saveFile);
 
+            //writes locations
             for (String loc : locArray) {
                 outputString = outputString + loc + ",";
             }
-            outputString = outputString + "\n" + theHT.getNumInHashTable() + "\n";  
-
+            
+            //writes employees
+            outputString = outputString + "\n" + theHT.getNumInHashTable() + "\n";
             for (int i = 0; i < 10; i++) {            
                 for (int j = 0; j < theHT.buckets[i].size(); j++) {
                     ArrayList<EmployeeInfo> theBucket = theHT.buckets[i];
@@ -364,23 +371,25 @@ public class MainJFrame extends javax.swing.JFrame {
             
         } catch (IOException ioe) {
             ioe.printStackTrace();
+            
 	} finally { 
             try{
                 if(output!=null)
 		 output.close();
+                
             }catch(Exception ex){
                 System.out.println("Error closing the BufferedWriter " + ex);
 	    }
         }
     }
     
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+    private void editEmpsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editEmpsButtonActionPerformed
         EditJFrame editFrame = new EditJFrame();
         editFrame.passMainFrame(this);
-        editFrame.setVisible(true);
         editFrame.setHT(theHT);
         editFrame.setEditLocArray(locArray);
-    }//GEN-LAST:event_editButtonActionPerformed
+        editFrame.setVisible(true);
+    }//GEN-LAST:event_editEmpsButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         updateTable();
@@ -389,14 +398,17 @@ public class MainJFrame extends javax.swing.JFrame {
     private void locButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locButtonActionPerformed
         LocationJFrame locationFrame = new LocationJFrame();
         locationFrame.passMainFrame(this);
-        locationFrame.setVisible(true);
         locationFrame.setLocArray(locArray);
+        locationFrame.setVisible(true);
     }//GEN-LAST:event_locButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         if (file != null) {
+            //saves to the loaded file
             saveToFile(file);
+            
         } else {
+            //if no file is loaded, makes new file
             SaveAsJFrame saveAsFrame = new SaveAsJFrame();
             saveAsFrame.passMainFrame(this);
             saveAsFrame.setVisible(true);
@@ -404,42 +416,53 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        fileErrorMsg.setVisible(false);
+        
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text File", "txt");
         fileChooser.setFileFilter(filter);
         fileChooser.setCurrentDirectory(new File("C:\\Users\\jammy\\Documents\\NetBeansProjects\\JennasEMS\\src\\save_files"));
-        int selected = fileChooser.showOpenDialog(this);
         
+        int selected = fileChooser.showOpenDialog(this);        
         if (selected == JFileChooser.APPROVE_OPTION) {
             theHT = new MyHashTable(10);
             locArray.clear();
             
             file = fileChooser.getSelectedFile();
             fileName = file.getName();
+            //if there is an error while loading the file, this ensures that the loaded file name still displays
+            fileText.setText(fileName);
             
             BufferedReader input = null;
             try {
                 FileReader saveFile = new FileReader(file);
                 input = new BufferedReader(saveFile);
                 
-                String strLoc = input.readLine();
-                locArray = new ArrayList<>(Arrays.asList(strLoc.split(",")));
-                
-                int numOfLines = Integer.parseInt(input.readLine());
-                for (int i = 0 ; i < numOfLines ; i++) {
-                    String strTheEmp = input.readLine();
-                    String[] theEmpArray = strTheEmp.split(",");
+                try {
+                    //read locations
+                    String strLoc = input.readLine();
+                    locArray = new ArrayList<>(Arrays.asList(strLoc.split(",")));
                     
-                    if (theEmpArray[0].equals("F")) {
-                        FTE theFTE = new FTE(theEmpArray[2], new ImageIcon(theEmpArray[3]), Integer.parseInt(theEmpArray[4]), theEmpArray[5], theEmpArray[6], theEmpArray[7], Integer.parseInt(theEmpArray[8]), Double.parseDouble(theEmpArray[9]), Double.parseDouble(theEmpArray[1]));
-                        theHT.addEmployee(theFTE); 
-                    } else if (theEmpArray[0].equals("P")) {
-                        PTE thePTE = new PTE(theEmpArray[4], new ImageIcon(theEmpArray[5]), Integer.parseInt(theEmpArray[6]), theEmpArray[7], theEmpArray[8], theEmpArray[9], Integer.parseInt(theEmpArray[10]), Double.parseDouble(theEmpArray[11]), Double.parseDouble(theEmpArray[1]), Double.parseDouble(theEmpArray[2]), Integer.parseInt(theEmpArray[3]));
-                        theHT.addEmployee(thePTE);
+                    //read employees
+                    int numOfEmp = Integer.parseInt(input.readLine());
+                    for (int i = 0 ; i < numOfEmp ; i++) {
+                        String strTheEmp = input.readLine();
+                        String[] theEmpArray = strTheEmp.split(",");
+
+                        if (theEmpArray[0].equals("F")) {
+                            FTE theFTE = new FTE(theEmpArray[2], new ImageIcon(theEmpArray[3]), Integer.parseInt(theEmpArray[4]), theEmpArray[5], theEmpArray[6], theEmpArray[7], Integer.parseInt(theEmpArray[8]), Double.parseDouble(theEmpArray[9]), Double.parseDouble(theEmpArray[1]));
+                            theHT.addEmployee(theFTE); 
+                        } else if (theEmpArray[0].equals("P")) {
+                            PTE thePTE = new PTE(theEmpArray[4], new ImageIcon(theEmpArray[5]), Integer.parseInt(theEmpArray[6]), theEmpArray[7], theEmpArray[8], theEmpArray[9], Integer.parseInt(theEmpArray[10]), Double.parseDouble(theEmpArray[11]), Double.parseDouble(theEmpArray[1]), Double.parseDouble(theEmpArray[2]), Integer.parseInt(theEmpArray[3]));
+                            theHT.addEmployee(thePTE);
+                        } else {
+                            fileErrorMsg.setVisible(true);
+                        }
                     }
-                }
-                updateTable();
-                
+                    updateTable();
+                } catch (Exception e) {
+                    fileErrorMsg.setVisible(true);
+                }               
             } catch (IOException ioe) {
                 ioe.printStackTrace();
             } finally {
@@ -455,6 +478,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_loadButtonActionPerformed
 
     private void saveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsButtonActionPerformed
+        //makes new file
         SaveAsJFrame saveAsFrame = new SaveAsJFrame();
         saveAsFrame.passMainFrame(this);
         saveAsFrame.setVisible(true);
@@ -462,6 +486,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void backgroundMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backgroundMousePressed
         saveMsg.setVisible(false);
+        fileErrorMsg.setVisible(false);
     }//GEN-LAST:event_backgroundMousePressed
 
     /**
@@ -502,7 +527,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
-    private javax.swing.JButton editButton;
+    private javax.swing.JButton editEmpsButton;
+    private javax.swing.JLabel fileErrorMsg;
     private javax.swing.JLabel fileText;
     private javax.swing.JTable fteTable;
     private javax.swing.JLabel fteText;

@@ -8,7 +8,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -35,10 +35,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jTabbedPane1" min="-2" pref="375" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jTabbedPane1" min="-2" pref="375" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -62,89 +59,74 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="fteAddPanel" alignment="0" min="-2" pref="408" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                          <Component id="pfpText" min="-2" max="-2" attributes="0"/>
+                                      <Component id="pfpAddLabel" alignment="1" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="uploadAddButton" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                          <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                                          <Component id="pfpLabel" min="-2" pref="106" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="pfpText" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="gText" min="-2" max="-2" attributes="0"/>
-                                              <Component id="gField" min="-2" pref="139" max="-2" attributes="0"/>
+                                              <Component id="gAddField" min="-2" pref="139" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="deducText" min="-2" max="-2" attributes="0"/>
-                                              <Component id="deducField" min="-2" pref="116" max="-2" attributes="0"/>
+                                              <Component id="deducAddField" min="-2" pref="116" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="fNField" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                                              <Component id="fNAddField" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
                                               <Component id="fNText" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="lNText" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lNField" min="-2" pref="137" max="-2" attributes="0"/>
+                                              <Component id="lNAddField" min="-2" pref="137" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="empNumText" min="-2" max="-2" attributes="0"/>
-                                              <Component id="empNumField" min="-2" pref="110" max="-2" attributes="0"/>
+                                              <Component id="eNAddField" min="-2" pref="110" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="locText" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="locField" min="-2" pref="145" max="-2" attributes="0"/>
+                                              <Component id="locAddField" min="-2" pref="145" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="pteButton" min="-2" max="-2" attributes="0"/>
-                                      <Component id="fteButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="ftePanel" min="-2" max="-2" attributes="0"/>
-                                      <Component id="ptePanel" min="-2" pref="326" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="addMsg" min="-2" pref="350" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="addButton" min="-2" pref="59" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Component id="msg" min="-2" pref="337" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="addButton" min="-2" pref="59" max="-2" attributes="0"/>
+                              <Component id="pteAddPanel" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace pref="29" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="fNText" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lNText" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -153,14 +135,14 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="pfpLabel" min="-2" pref="106" max="-2" attributes="0"/>
+                              <Component id="pfpAddLabel" min="-2" pref="106" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="uploadAddButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lNField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fNField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lNAddField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fNAddField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -169,8 +151,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="empNumField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="locField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="eNAddField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="locAddField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -179,42 +161,33 @@
                               </Group>
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="gField" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="deducField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gAddField" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deducAddField" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="fteButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                              <Component id="pteButton" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="ftePanel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="ptePanel" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Component id="fteAddPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="7" max="32767" attributes="0"/>
+                      <Component id="pteAddPanel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="addMsg" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="addButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="msg" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="36" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="empNumField">
+            <Component class="javax.swing.JTextField" name="eNAddField">
             </Component>
-            <Component class="javax.swing.JTextField" name="fNField">
+            <Component class="javax.swing.JTextField" name="fNAddField">
             </Component>
-            <Component class="javax.swing.JTextField" name="lNField">
+            <Component class="javax.swing.JTextField" name="lNAddField">
             </Component>
-            <Component class="javax.swing.JComboBox" name="locField">
+            <Component class="javax.swing.JComboBox" name="locAddField">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -224,40 +197,18 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JTextField" name="gField">
+            <Component class="javax.swing.JTextField" name="gAddField">
             </Component>
-            <Component class="javax.swing.JRadioButton" name="fteButton">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="addButtonGroup"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Full Time"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fteButtonActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="deducAddField">
             </Component>
-            <Component class="javax.swing.JRadioButton" name="pteButton">
-              <Properties>
-                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-                  <ComponentRef name="addButtonGroup"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Part Time"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pteButtonActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JLabel" name="pfpAddLabel">
             </Component>
-            <Component class="javax.swing.JTextField" name="deducField">
-            </Component>
-            <Component class="javax.swing.JLabel" name="pfpLabel">
-            </Component>
-            <Component class="javax.swing.JButton" name="uploadButton">
+            <Component class="javax.swing.JButton" name="uploadAddButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="UPLOAD"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadAddButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="addButton">
@@ -303,67 +254,76 @@
                 <Property name="text" type="java.lang.String" value="Profile Picture:"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="ftePanel">
+            <Container class="javax.swing.JPanel" name="fteAddPanel">
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="fteArrow" min="-2" pref="8" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="fteAddButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="yearlyText" min="-2" pref="84" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="yearlyField" min="-2" pref="113" max="-2" attributes="0"/>
-                          <EmptySpace pref="97" max="32767" attributes="0"/>
+                          <Component id="yrlyAddField" min="-2" pref="113" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="fteArrow" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="yearlyText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="yearlyField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="yrlyAddField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fteAddButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JTextField" name="yearlyField">
+                <Component class="javax.swing.JTextField" name="yrlyAddField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="yearlyText">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Yearly Salary:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="fteArrow">
+                <Component class="javax.swing.JRadioButton" name="fteAddButton">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&gt;"/>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="addButtonGroup"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Full Time  &gt;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fteAddButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="ptePanel">
+            <Container class="javax.swing.JPanel" name="pteAddPanel">
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="pteArrow" min="-2" pref="8" max="-2" attributes="0"/>
+                          <Component id="pteAddButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="hourlyText" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="hourlyField" min="-2" pref="39" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          <Component id="hrlyAddField" min="-2" pref="48" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="hrsWeekText" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="hoursWeekField" min="-2" pref="39" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="hrsWAddField" min="-2" pref="45" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="wYrText" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="wYrField" min="-2" pref="42" max="-2" attributes="0"/>
+                          <Component id="wYrAddField" min="-2" pref="48" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -372,12 +332,12 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="hourlyText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="hourlyField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hrlyAddField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="hrsWeekText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="hoursWeekField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="hrsWAddField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="wYrText" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="wYrField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="pteArrow" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="wYrAddField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="pteAddButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -398,20 +358,35 @@
                     <Property name="text" type="java.lang.String" value="W/Yr:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="wYrField">
-                </Component>
-                <Component class="javax.swing.JTextField" name="hourlyField">
-                </Component>
-                <Component class="javax.swing.JTextField" name="hoursWeekField">
-                </Component>
-                <Component class="javax.swing.JLabel" name="pteArrow">
+                <Component class="javax.swing.JTextField" name="wYrAddField">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&gt;"/>
+                    <Property name="editable" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="hrlyAddField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="hrsWAddField">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JRadioButton" name="pteAddButton">
+                  <Properties>
+                    <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                      <ComponentRef name="addButtonGroup"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Part Time  &gt;"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pteAddButtonActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="msg">
+            <Component class="javax.swing.JLabel" name="addMsg">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -434,29 +409,26 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jInternalFrame2" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
-                              <Component id="searchEditField" min="-2" pref="202" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="searchEditField" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="searchEditButton" min="-2" pref="44" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                              <Component id="jInternalFrame2" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="searchEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="searchEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -464,7 +436,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jInternalFrame2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace pref="46" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -484,15 +456,9 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace pref="37" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="ftePanel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="ptePanel2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="msgEdit" min="-2" pref="264" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="editButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="fteEditPanel" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="uploadEditButton" min="-2" max="-2" attributes="0"/>
@@ -537,6 +503,12 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <Component id="pteEditPanel" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="editMsg" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="editButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace pref="37" max="32767" attributes="0"/>
                       </Group>
@@ -578,13 +550,13 @@
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ftePanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="fteEditPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ptePanel2" min="-2" max="-2" attributes="0"/>
+                          <Component id="pteEditPanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="editButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="msgEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="editMsg" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       </Group>
@@ -612,7 +584,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JPanel" name="ftePanel2">
+                <Container class="javax.swing.JPanel" name="fteEditPanel">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -623,7 +595,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="yearlyText2" min="-2" pref="84" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="yearlyEditField" pref="171" max="32767" attributes="0"/>
+                              <Component id="yrlyEditField" pref="171" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -631,14 +603,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="yearlyText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="yearlyEditField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="yrlyEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="fteEditButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="yearlyEditField">
+                    <Component class="javax.swing.JTextField" name="yrlyEditField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -657,12 +629,12 @@
                         <Property name="enabled" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="fteEditButtonStateChanged"/>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="fteEditButtonItemStateChanged"/>
                       </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="ptePanel2">
+                <Container class="javax.swing.JPanel" name="pteEditPanel">
                   <Properties>
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
@@ -676,11 +648,11 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="hourlyText2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="hourlyEditField" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="hrlyEditField" min="-2" pref="29" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="hrsWeekText2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="hoursWeekEditField" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="hrsWEditField" min="-2" pref="30" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="wYrText2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -691,9 +663,9 @@
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="hourlyEditField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hrlyEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="hrsWeekText2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="hoursWeekEditField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hrsWEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="wYrText2" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="wYrEditField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="hourlyText2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -723,12 +695,12 @@
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="hourlyEditField">
+                    <Component class="javax.swing.JTextField" name="hrlyEditField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="hoursWeekEditField">
+                    <Component class="javax.swing.JTextField" name="hrsWEditField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                       </Properties>
@@ -783,7 +755,7 @@
                     <Property name="text" type="java.lang.String" value="Employee #:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="msgEdit">
+                <Component class="javax.swing.JLabel" name="editMsg">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="ff" type="rgb"/>
@@ -883,7 +855,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -894,14 +866,14 @@
                           </Group>
                           <Component id="jInternalFrame1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace pref="28" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="searchRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -909,7 +881,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jInternalFrame1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="40" max="32767" attributes="0"/>
+                      <EmptySpace pref="51" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -942,13 +914,13 @@
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="ftePanel1" max="32767" attributes="0"/>
+                                  <Component id="fteRemovePanel" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="msgRemove" min="-2" pref="260" max="-2" attributes="0"/>
+                                          <Component id="removeMsg" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="removeButton" min="-2" max="-2" attributes="0"/>
                                       </Group>
@@ -994,7 +966,7 @@
                                                   </Group>
                                               </Group>
                                           </Group>
-                                          <Component id="ptePanel1" alignment="0" min="-2" pref="349" max="-2" attributes="0"/>
+                                          <Component id="pteRemovePanel" alignment="0" min="-2" pref="349" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -1036,13 +1008,13 @@
                               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="ftePanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="fteRemovePanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ptePanel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="pteRemovePanel" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="removeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="msgRemove" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="removeMsg" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
@@ -1080,7 +1052,7 @@
                     <Property name="focusable" type="boolean" value="false"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JPanel" name="ftePanel1">
+                <Container class="javax.swing.JPanel" name="fteRemovePanel">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1088,7 +1060,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="yearlyText1" min="-2" pref="84" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="yearlyRemoveField" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="yrlyRemoveField" min="-2" pref="121" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1097,13 +1069,13 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="yearlyText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="yearlyRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="yrlyRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JTextField" name="yearlyRemoveField">
+                    <Component class="javax.swing.JTextField" name="yrlyRemoveField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -1116,7 +1088,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Container class="javax.swing.JPanel" name="ptePanel1">
+                <Container class="javax.swing.JPanel" name="pteRemovePanel">
 
                   <Layout>
                     <DimensionLayout dim="0">
@@ -1124,11 +1096,11 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="hourlyText1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="hourlyRemoveField" min="-2" pref="53" max="-2" attributes="0"/>
+                              <Component id="hrlyRemoveField" min="-2" pref="53" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="hrsWeekText1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                              <Component id="hoursWeekRemoveField" min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="hrsWRemoveField" min="-2" pref="52" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="wYrText1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -1141,9 +1113,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="hourlyText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="hourlyRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hrlyRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="hrsWeekText1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="hoursWeekRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="hrsWRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="wYrText1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="wYrRemoveField" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -1172,13 +1144,13 @@
                         <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="hourlyRemoveField">
+                    <Component class="javax.swing.JTextField" name="hrlyRemoveField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="hoursWeekRemoveField">
+                    <Component class="javax.swing.JTextField" name="hrsWRemoveField">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -1222,7 +1194,7 @@
                     <Property name="text" type="java.lang.String" value="Employee #:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="msgRemove">
+                <Component class="javax.swing.JLabel" name="removeMsg">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="ff" type="rgb"/>
