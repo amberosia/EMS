@@ -65,7 +65,7 @@ public class EditJFrame extends javax.swing.JFrame {
         theHT = theHTRef;
     }
     
-    //gets the array of locations from MainJFrame
+    //gets the array of locations from MainJFrame and puts them in the dropdowns
     public void setEditLocArray(ArrayList<String> locArrayRef) {
         locArray = locArrayRef;
         
@@ -973,6 +973,7 @@ public class EditJFrame extends javax.swing.JFrame {
     
     private ImageIcon uploadPfp(javax.swing.JLabel pfpLabel) {
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "jpeg");
         fileChooser.setFileFilter(filter);
         
@@ -1149,7 +1150,7 @@ public class EditJFrame extends javax.swing.JFrame {
             genderDisplay.setText(empFound.gender);
             if (editing) {
                 locEditField.setSelectedIndex(empFound.workLoc);
-                pfpEdit = pfpImageIcon;
+                pfpEdit = pfpImageIcon; //if user does not update pfp, this preserves displayed pfp
             } else {
                 locRemoveField.setText(locArray.get(empFound.workLoc));
             }

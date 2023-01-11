@@ -9,16 +9,18 @@
  * @author jenna
  */
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.swing.JLabel;
 import java.awt.Component;
 import javax.swing.JTable;
-import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.io.File;
@@ -33,7 +35,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private MyHashTable theHT;
     private ArrayList<String> locArray;
     final ImageIcon defaultPfp;
-    private File file;
+    private File loadedFile;
     private String fileName;
     
     /**
@@ -43,17 +45,15 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MainJFrame.MAXIMIZED_BOTH); 
         
-        theHT = new MyHashTable(10);
-        locArray = new ArrayList<>();
-        
+        saveMsg.setVisible(false); 
+        fileErrorMsg.setVisible(false);
         fileName = "No File";
         fileText.setText(fileName);
         
+        theHT = new MyHashTable(10);
+        locArray = new ArrayList<>();
         String defaultPfpPath = new File("src\\ems_assets\\defaultPfp.png").getAbsolutePath();
         defaultPfp = new ImageIcon(defaultPfpPath, defaultPfpPath);
-
-        saveMsg.setVisible(false); 
-        fileErrorMsg.setVisible(false);
     }
     
     /**
@@ -421,9 +421,9 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_locButtonActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        if (file != null) {
+        if (loadedFile != null) {
             //saves to the loaded file
-            saveToFile(file);
+            saveToFile(loadedFile);
             
         } else {
             //if no file is loaded, makes new file
@@ -437,45 +437,39 @@ public class MainJFrame extends javax.swing.JFrame {
         fileErrorMsg.setVisible(false);
         
         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text File", "txt");
         fileChooser.setFileFilter(filter);
         fileChooser.setCurrentDirectory(new File("src\\ems_save_files"));
-        
-        int selected = fileChooser.showOpenDialog(this);        
-        if (selected == JFileChooser.APPROVE_OPTION) {
+    
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             theHT = new MyHashTable(10);
             locArray.clear();
             
-            file = fileChooser.getSelectedFile();
-            fileName = file.getName();
+            loadedFile = fileChooser.getSelectedFile();
+            fileName = loadedFile.getName();
             //if there is an error while loading the file, this ensures that the loaded file name still displays
             fileText.setText(fileName);
             
             BufferedReader input = null;
             try {
-                FileReader saveFile = new FileReader(file);
+                FileReader saveFile = new FileReader(loadedFile);
                 input = new BufferedReader(saveFile);
-                System.out.println("a");
                 
                 try {
                     //reads locations
                     String strLoc = input.readLine();
                     locArray = new ArrayList<>(Arrays.asList(strLoc.split(" \\| ")));
-                    System.out.println("b");
                     
                     //reads employees
                     int numOfEmp = Integer.parseInt(input.readLine());
-                    System.out.println("c");
                     for (int i = 0 ; i < numOfEmp ; i++) {
                         String strTheEmp = input.readLine();
                         String[] theEmpArray = strTheEmp.split(" \\| ");
-                        System.out.println("d");
 
                         if (theEmpArray[0].equals("F")) {
-                            System.out.println("e");
                             FTE theFTE = new FTE(theEmpArray[2], new ImageIcon(theEmpArray[3]), Integer.parseInt(theEmpArray[4]), theEmpArray[5], theEmpArray[6], theEmpArray[7], Integer.parseInt(theEmpArray[8]), Double.parseDouble(theEmpArray[9]), Double.parseDouble(theEmpArray[1]));
                             theHT.addEmployee(theFTE); 
-                            System.out.println("f");
                         } else if (theEmpArray[0].equals("P")) {
                             PTE thePTE = new PTE(theEmpArray[4], new ImageIcon(theEmpArray[5]), Integer.parseInt(theEmpArray[6]), theEmpArray[7], theEmpArray[8], theEmpArray[9], Integer.parseInt(theEmpArray[10]), Double.parseDouble(theEmpArray[11]), Double.parseDouble(theEmpArray[1]), Double.parseDouble(theEmpArray[2]), Integer.parseInt(theEmpArray[3]));
                             theHT.addEmployee(thePTE);
@@ -484,6 +478,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         }
                     }
                     updateTable();
+                    
                 } catch (Exception e) {
                     fileErrorMsg.setVisible(true);
                 }               

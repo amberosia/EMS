@@ -10,9 +10,9 @@
  */
 
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.ListSelectionModel;
 import javax.swing.DefaultListModel;
-import java.util.ArrayList;
 
 public class LocationJFrame extends javax.swing.JFrame {
     
@@ -41,7 +41,7 @@ public class LocationJFrame extends javax.swing.JFrame {
         this.mainFrame = mainFrame;
     }
 
-    //gets the array of locations from MainJFrame
+    //gets the array of locations from MainJFrame and puts them in the list
     public void setLocArray(ArrayList<String> locArrayRef) {
         locArray = locArrayRef;
         
@@ -84,7 +84,7 @@ public class LocationJFrame extends javax.swing.JFrame {
             }
         });
 
-        removeLocButton.setText("REMOVE SELECTED");
+        removeLocButton.setText("TOGGLE SELECTED STATUS");
         removeLocButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 removeLocButtonActionPerformed(evt);
@@ -156,7 +156,7 @@ public class LocationJFrame extends javax.swing.JFrame {
             locMsg.setText("Cannot contain | character.");
             locMsg.setVisible(true);
         } else {
-            listModel.addElement(addLocField.getText());
+            listModel.addElement(locToAdd);
             addLocField.setText(null);
         }
     }//GEN-LAST:event_addLocButtonActionPerformed
@@ -165,16 +165,14 @@ public class LocationJFrame extends javax.swing.JFrame {
         locMsg.setVisible(false);
         locMsg.setForeground(Color.red);
         
-        int index = locList.getSelectedIndex();
-        if (index == -1) {
+        String selectedLoc = locList.getSelectedValue();
+        if (selectedLoc == null) {
             locMsg.setText("Select a location to remove.");
             locMsg.setVisible(true);
-        } else if (locList.getSelectedValue().contains("[CLOSED]")) {
-            locMsg.setText("Location already closed.");
-            locMsg.setVisible(true);
+        } else if (selectedLoc.contains(" [CLOSED]")) {
+            listModel.setElementAt(selectedLoc.replace(" [CLOSED]", ""), locList.getSelectedIndex());
         } else {
-            String element = locList.getSelectedValue();
-            listModel.setElementAt(element + " [CLOSED]", index);
+            listModel.setElementAt(selectedLoc + " [CLOSED]", locList.getSelectedIndex());
         }
     }//GEN-LAST:event_removeLocButtonActionPerformed
 

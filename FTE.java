@@ -1,6 +1,4 @@
 
-import javax.swing.ImageIcon;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -10,6 +8,9 @@ import javax.swing.ImageIcon;
  *
  * @author jenna
  */
+
+import javax.swing.ImageIcon;
+
 public class FTE extends EmployeeInfo {
     public double yearlySalary;
     
@@ -21,7 +22,7 @@ public class FTE extends EmployeeInfo {
     }
     
     public double calcNetIncome() {
-        return (yearlySalary *(1.0 - deductRate));
+        return (Math.round(yearlySalary*(1.0 - deductRate)*100.0)/100.0);
     } 
     
 }

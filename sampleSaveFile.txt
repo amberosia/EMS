@@ -1,0 +1,10 @@
+Mississauga | Rain World [CLOSED] | Sekai Land idk | Faraway Plaza [CLOSED] | Blocks | Hit Game Overwatch2 | Toronto | Oakville | 
+8
+F | 1000000.0 | 2023/01/02 12:30 | C:\Downloads\neeko.png | 1 | Jenna | Wan | Female | 0 | 0.0
+F | 123454.0 | 2023/01/02 12:31 | C:\Downloads\O_O.jpg | 2 | Mercy | Overwatch | Agender | 5 | 0.07
+P | 22.0 | 2.0 | 53 | 2023/01/02 12:32 | C:\Users\jammy\Documents\NetBeansProjects\JennasEMS\src\ems_assets\defaultPfp.png | 3 | Annie | Zhang | Female | 4 | 0.005
+F | 65764.0 | 2023/01/02 12:32 | C:\Users\jammy\Documents\donut texture.png | 4 | Melody | Lu | Gender Fluid | 3 | 0.02
+F | 122147.0 | 2023/01/02 12:33 | C:\Users\jammy\Documents\NetBeansProjects\JennasEMS\src\ems_assets\defaultPfp.png | 5 | Anvi | Sekai | Female | 2 | 0.04
+P | 66.0 | 10.0 | 43 | 2023/01/02 12:34 | C:\Downloads\ratoru.jpg | 6 | Katie | Zhao | Nonbinary | 1 | 0.0
+F | 1.9234839 | 2023/01/02 12:36 | C:\Downloads\school\Annual Income vs. AFQT Score of White Males Aged 39-47 in the U.S.png | 7 | Arya | Vishnu | Female | 0 | 0.0
+P | 30.0 | 7.0 | 50 | 2023/01/09 09:21 | C:\Riot Games\League of Legends\Screenshots\Screen23.png | 8 | Jerry | Wan | Male | 4 | 0.2
